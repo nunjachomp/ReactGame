@@ -1,10 +1,13 @@
-import Sprite from './components/object-graphics/Sprite';
 import { SPRITE_SHEET_SRC } from '../src/helpers/consts';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import RenderLevel from "../src/components/level-layout/RenderLevel";
+import { useRecoilState } from "recoil";
+import { spriteSheetImageAtom } from "./atoms/spriteSheetImageAtom";
 
 const App = () => {
 
-const [spriteSheetImage, setSpriteSheetImage] = useState(null)
+  const [spriteSheetImage, setSpriteSheetImage] =
+  useRecoilState(spriteSheetImageAtom);
 
 useEffect(() => {
   const image = new Image();
@@ -12,18 +15,13 @@ useEffect(() => {
   image.onload = () => {
     setSpriteSheetImage(image);
   }
-}, [])
+}, [setSpriteSheetImage])
 
 if(!spriteSheetImage) {
   return null;
 }
 
-  return (
-  <div>
-    <p>Ciabatta's Revenge</p>
-   <Sprite image={spriteSheetImage} frameCoord={"1x0"} />
-  </div>
-  )
+return <RenderLevel />;
 }
 
 export default App

@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { CELL_SIZE } from '../../helpers/consts';
+import { useRecoilValue } from "recoil";
+import { spriteSheetImageAtom } from "../../atoms/spriteSheetImageAtom";
 
-const Sprite = ({ image, frameCoord, size = 16 }) => {
+function Sprite({ frameCoord, size = 16 }) {
+  const spriteSheetImage = useRecoilValue(spriteSheetImageAtom);
 
-    const canvasRef = useRef();
+  const canvasRef = useRef();
 
     useEffect(() => {
         const canvasEl = canvasRef.current;
@@ -15,7 +18,7 @@ const Sprite = ({ image, frameCoord, size = 16 }) => {
         const tileSheetY = Number(frameCoord.split("x")[1]);
 
         ctx.drawImage(
-            image,
+            spriteSheetImage,
             tileSheetX * CELL_SIZE,
             tileSheetY * CELL_SIZE,
             size,
@@ -26,11 +29,12 @@ const Sprite = ({ image, frameCoord, size = 16 }) => {
             size
         );
 
-    }, [ frameCoord, size ])
+    }, [ spriteSheetImage, frameCoord, size ])
 
   return (
     <canvas width={size} height={size} ref={canvasRef} />
   )
 }
 
-export default Sprite
+const MemoizedSprite = React.memo(Sprite);
+export default MemoizedSprite;
