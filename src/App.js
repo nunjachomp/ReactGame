@@ -1,27 +1,26 @@
-import { SPRITE_SHEET_SRC } from '../src/helpers/consts';
-import React, { useEffect } from 'react'
+import { SPRITE_SHEET_SRC } from "../src/helpers/consts";
+import React, { useEffect } from "react";
 import RenderLevel from "../src/components/level-layout/RenderLevel";
 import { useRecoilState } from "recoil";
 import { spriteSheetImageAtom } from "./atoms/spriteSheetImageAtom";
 
 const App = () => {
-
   const [spriteSheetImage, setSpriteSheetImage] =
-  useRecoilState(spriteSheetImageAtom);
+    useRecoilState(spriteSheetImageAtom);
 
-useEffect(() => {
-  const image = new Image();
-  image.src = SPRITE_SHEET_SRC;
-  image.onload = () => {
-    setSpriteSheetImage(image);
+  useEffect(() => {
+    const image = new Image();
+    image.src = SPRITE_SHEET_SRC;
+    image.onload = () => {
+      setSpriteSheetImage(image);
+    };
+  }, [setSpriteSheetImage]);
+
+  if (!spriteSheetImage) {
+    return null;
   }
-}, [setSpriteSheetImage])
 
-if(!spriteSheetImage) {
-  return null;
-}
+  return <RenderLevel />;
+};
 
-return <RenderLevel />;
-}
-
-export default App
+export default App;

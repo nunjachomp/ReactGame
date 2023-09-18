@@ -1,47 +1,68 @@
-import { LEVEL_THEMES } from "../helpers/consts";
- import { TILES } from "../helpers/tiles";
- 
- export class LevelState {
-   constructor(levelId, onEmit) {
-     this.id = levelId;
-     this.onEmit = onEmit;
- 
-     //Start the level!
-     this.start();
-   }
- 
-   start() {
-     this.theme = LEVEL_THEMES.BLUE;
-     this.tilesWidth = 8;
-     this.tilesHeight = 8;
-     this.placements = [
-       { id: 0, x: 2, y: 2, frameCoord: TILES.ICE_PICKUP },
-       { id: 1, x: 2, y: 4, frameCoord: TILES.WATER_PICKUP },
-       { id: 2, x: 2, y: 6, frameCoord: TILES.FIRE_PICKUP },
-       { id: 3, x: 7, y: 2, frameCoord: TILES.GREEN_KEY },
-       { id: 4, x: 7, y: 4, frameCoord: TILES.BLUE_LOCK },
-       { id: 5, x: 7, y: 6, frameCoord: TILES.BULLET },
-     ];
- 
-     setTimeout(() => { // Don't worry, this doesn't stay. Just to demonstrate.
-       this.placements = [
-         ...this.placements,
-         { id: 6, x: 5, y: 5, frameCoord: TILES.BULLET },
-       ];
-       this.onEmit(this.getState());
-     }, 1000);
-   }
- 
-   getState() {
-     return {
-       theme: this.theme,
-       tilesWidth: this.tilesWidth,
-       tilesHeight: this.tilesHeight,
-       placements: this.placements,
-     };
-   }
- 
-   destroy() {
-     // Tear down the level.
-   }
- }
+import {
+  LEVEL_THEMES,
+  PLACEMENT_TYPE_GOAL,
+  PLACEMENT_TYPE_HERO,
+} from "../helpers/consts";
+import { DirectionControls } from "./DirectionControls";
+import { GameLoop } from "./GameLoop";
+import { placementFactory } from "./PlacementFactory";
+
+export class LevelState {
+  constructor(levelId, onEmit) {
+    this.id = levelId;
+    this.onEmit = onEmit;
+    this.directionControls = new DirectionControls();
+
+    //Start the level!
+    this.start();
+  }
+
+  start() {
+    this.theme = LEVEL_THEMES.BLUE;
+    this.tilesWidth = 8;
+    this.tilesHeight = 8;
+    this.placements = [
+      { id: 0, x: 2, y: 2, type: PLACEMENT_TYPE_HERO },
+      { id: 1, x: 6, y: 4, type: PLACEMENT_TYPE_GOAL },
+    ].map((config) => {
+      return placementFactory.createPlacement(config, this); //"this" is refering to current level
+    });
+    // Cache a reference to the hero
+    this.heroRef = this.placements.find((p) => p.type === PLACEMENT_TYPE_HERO);
+    this.startGameLoop();
+  }
+
+  startGameLoop() {
+    this.gameLoop?.stop();
+    this.gameLoop = new GameLoop(() => {
+      this.tick();
+    });
+  }
+
+  tick() {
+    if (this.directionControls.direction) {
+      this.heroRef.controllerMoveRequested(this.directionControls.direction);
+    }
+    this.placements.forEach((placement) => {
+      placement.tick();
+    });
+
+    //Emit any changes to React
+    this.onEmit(this.getState());
+  }
+
+  getState() {
+    return {
+      theme: this.theme,
+      tilesWidth: this.tilesWidth,
+      tilesHeight: this.tilesHeight,
+      placements: this.placements,
+    };
+  }
+
+  destroy() {
+    // Tear down the level.
+    this.gameLoop.stop();
+    this.directionControls.unbind();
+  }
+}
