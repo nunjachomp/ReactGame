@@ -18,9 +18,24 @@ export class Placement {
     this.movingPixelsDirection = DIRECTION_RIGHT;
     this.spriteFacingDirection = DIRECTION_RIGHT;
     this.spriteWalkFrame = 0;
+
+    this.hasBeenCollected = false;
   }
 
   tick() {}
+
+   
+  isSolidForBody(_body) {
+    return false;
+  }
+
+  addsItemToInventoryOnCollide() {
+    return null;
+  }
+
+  completesLevelOnCollide() {
+    return false;
+  }
 
   displayXY() {
     if (this.movingPixelsRemaining > 0) {
@@ -46,6 +61,17 @@ export class Placement {
         return [x, y + progressPixels];
     }
   }
+
+  zIndex() {
+    return 1;
+  }
+
+   
+  collect() {
+    this.hasBeenCollected = true;
+    this.level.inventory.add(this.addsItemToInventoryOnCollide());
+  }
+
 
   renderComponent() {
     return null;
