@@ -32,4 +32,9 @@ export class Collision {
       return p.completesLevelOnCollide();
     });
   }
+  withLock() {
+    return this.placementsAtPosition.find((p) => {
+      return p.canBeUnlocked();
+    });
+  }
 }

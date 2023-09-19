@@ -13,7 +13,6 @@ import {
 import { TILES } from "../helpers/tiles";
 import { Collision } from "../classes/Collision";
 
-
 const heroSkinMap = {
   [BODY_SKINS.NORMAL]: [TILES.HERO_LEFT, TILES.HERO_RIGHT],
   [HERO_RUN_1]: [TILES.HERO_RUN_1_LEFT, TILES.HERO_RUN_1_RIGHT],
@@ -26,9 +25,14 @@ export class HeroPlacement extends Placement {
     if (this.movingPixelsRemaining > 0) {
       return;
     }
+    // Check for lock at next position
+    const possibleLock = this.getLockAtNextPosition(direction);
+    if (possibleLock) {
+      possibleLock.unlock();
+      return;
+    }
     //Make sure the next space is available
-    const canMove = this.canMoveToNextDestination(direction);
-    if (!canMove) {
+    if (this.isSolidAtNextPosition(direction)) {
       return;
     }
 
@@ -38,29 +42,35 @@ export class HeroPlacement extends Placement {
     this.updateFacingDirection();
     this.updateWalkFrame();
   }
-  canMoveToNextDestination(direction) {
+  getCollisionAtNextPosition(direction) {
     // Is the next space in bounds?
     const { x, y } = directionUpdateMap[direction];
     const nextX = this.x + x;
     const nextY = this.y + y;
-    const isOutOfBounds = this.level.isPositionOutOfBounds(nextX, nextY);
-    if (isOutOfBounds) {
-      return false;
-    }
 
-    // Is there a solid thing here?
-    const collision = new Collision(this, this.level, {
+    return new Collision(this, this.level, {
       x: nextX,
       y: nextY,
     });
-    if (collision.withSolidPlacement()) {
-      return false;
-    }
-
-    // Default to allowing move
-
-    return true;
   }
+
+  getLockAtNextPosition(direction) {
+    const collision = this.getCollisionAtNextPosition(direction);
+    return collision.withLock();
+  }
+
+  isSolidAtNextPosition(direction) {
+    const collision = this.getCollisionAtNextPosition(direction);
+    const isOutOfBounds = this.level.isPositionOutOfBounds(
+      collision.x,
+      collision.y
+    );
+    if (isOutOfBounds) {
+      return true;
+    }
+    return Boolean(collision.withSolidPlacement());
+  }
+
   updateFacingDirection() {
     if (
       this.movingPixelsDirection === DIRECTION_LEFT ||
@@ -96,7 +106,6 @@ export class HeroPlacement extends Placement {
     this.handleCollisions();
   }
 
-   
   handleCollisions() {
     // handle collisions!
     const collision = new Collision(this, this.level);
@@ -108,10 +117,10 @@ export class HeroPlacement extends Placement {
         x: this.x,
         y: this.y,
       });
-      }
-      const completesLevel = collision.withCompletesLevel();
-      if (completesLevel) {
-        this.level.completeLevel();
+    }
+    const completesLevel = collision.withCompletesLevel();
+    if (completesLevel) {
+      this.level.completeLevel();
       //Maybe handle score logic here as well?
     }
   }
