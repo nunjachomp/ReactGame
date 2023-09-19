@@ -4,10 +4,10 @@ import LevelBackgroundTilesLayer from "./LevelBackgroundTilesLayer";
 import LevelPlacementsLayer from "./LevelPlacementsLayer";
 import { useEffect, useState } from "react";
 import { LevelState } from "../../classes/LevelState";
-import FlourCount from "../hud/FlourCount";
+import FlourCount from "../hud/FlourCount"
 import LevelCompleteMessage from "../hud/LevelCompleteMessage";
 import { useRecoilValue } from "recoil";
-import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
+import { currentLevelIdAtom } from "../../atoms/currentLevelidAtom";
 
 
 export default function RenderLevel() {
