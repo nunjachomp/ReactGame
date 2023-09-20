@@ -1,26 +1,33 @@
-import { SPRITE_SHEET_SRC } from "../src/helpers/consts";
 import React, { useEffect } from "react";
-import RenderLevel from "../src/components/level-layout/RenderLevel";
-import { useRecoilState } from "recoil";
-import { spriteSheetImageAtom } from "./atoms/spriteSheetImageAtom";
+import { useAuth0 } from "@auth0/auth0-react";
+import Home from "./components/Home/Home";
+import axios from "axios";
+import Auth from "./components/Auth/Auth";
+
 
 const App = () => {
-  const [spriteSheetImage, setSpriteSheetImage] =
-    useRecoilState(spriteSheetImageAtom);
+  const { isAuthenticated} = useAuth0();
+
+
+
+
+
 
   useEffect(() => {
-    const image = new Image();
-    image.src = SPRITE_SHEET_SRC;
-    image.onload = () => {
-      setSpriteSheetImage(image);
-    };
-  }, [setSpriteSheetImage]);
+    console.log("isAuthenticated:", isAuthenticated);
+    if (isAuthenticated) {
+      return;
+    }
+    try {
+      console.log("Redirecting to login...")
+     console.log(isAuthenticated);
+    } catch (err) {
+      console.log("Auth0 Error:", err);
+    }
+  }, [isAuthenticated]);
 
-  if (!spriteSheetImage) {
-    return null;
-  }
+  return <>{isAuthenticated ? <Home /> :<Auth/> }</>;
 
-  return <RenderLevel />;
 };
 
 export default App;
