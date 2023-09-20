@@ -1,6 +1,6 @@
 export const CELL_SIZE = 16;
 export const Z_INDEX_LAYER_SIZE = 10;
-export const SPRITE_SHEET_SRC = "/ciabattas-revenge-sprites.png";
+export const SPRITE_SHEET_SRC = "./ciabattas-revenge-sprites.png";
 
 export const PLACEMENT_TYPE_HERO = "HERO";
 //Space to navigate to, to finish level
