@@ -15,6 +15,7 @@ import { Collision } from "../classes/Collision";
 
 const heroSkinMap = {
   [BODY_SKINS.NORMAL]: [TILES.HERO_LEFT, TILES.HERO_RIGHT],
+  [BODY_SKINS.DEATH]: [TILES.HERO_DEATH_LEFT, TILES.HERO_DEATH_RIGHT],
   [HERO_RUN_1]: [TILES.HERO_RUN_1_LEFT, TILES.HERO_RUN_1_RIGHT],
   [HERO_RUN_2]: [TILES.HERO_RUN_2_LEFT, TILES.HERO_RUN_2_RIGHT],
 };
@@ -25,16 +26,19 @@ export class HeroPlacement extends Placement {
     if (this.movingPixelsRemaining > 0) {
       return;
     }
+
     // Check for lock at next position
     const possibleLock = this.getLockAtNextPosition(direction);
     if (possibleLock) {
       possibleLock.unlock();
       return;
     }
+
     //Make sure the next space is available
     if (this.isSolidAtNextPosition(direction)) {
       return;
     }
+       
 
     // Start the move
     this.movingPixelsRemaining = 16;
@@ -42,18 +46,17 @@ export class HeroPlacement extends Placement {
     this.updateFacingDirection();
     this.updateWalkFrame();
   }
-  getCollisionAtNextPosition(direction) {
-    // Is the next space in bounds?
+
+   getCollisionAtNextPosition(direction) {
     const { x, y } = directionUpdateMap[direction];
     const nextX = this.x + x;
     const nextY = this.y + y;
-
     return new Collision(this, this.level, {
       x: nextX,
       y: nextY,
     });
   }
-
+ 
   getLockAtNextPosition(direction) {
     const collision = this.getCollisionAtNextPosition(direction);
     return collision.withLock();
@@ -70,7 +73,6 @@ export class HeroPlacement extends Placement {
     }
     return Boolean(collision.withSolidPlacement());
   }
-
   updateFacingDirection() {
     if (
       this.movingPixelsDirection === DIRECTION_LEFT ||
@@ -117,10 +119,14 @@ export class HeroPlacement extends Placement {
         x: this.x,
         y: this.y,
       });
-    }
-    const completesLevel = collision.withCompletesLevel();
-    if (completesLevel) {
-      this.level.completeLevel();
+      }
+      const takesDamages = collision.withSelfGetsDamaged();
+     if (takesDamages) {
+       this.level.setDeathOutcome(takesDamages.type);
+     }
+      const completesLevel = collision.withCompletesLevel();
+      if (completesLevel) {
+        this.level.completeLevel();
       //Maybe handle score logic here as well?
     }
   }
@@ -128,6 +134,11 @@ export class HeroPlacement extends Placement {
   getFrame() {
     //Which frame to show?
     const index = this.spriteFacingDirection === DIRECTION_LEFT ? 0 : 1;
+
+    // If dead, show the dead skin
+    if (this.level.deathOutcome) {
+      return heroSkinMap[BODY_SKINS.DEATH][index];
+    }
 
     //Use correct walking frame per direction
     if (this.movingPixelsRemaining > 0) {
