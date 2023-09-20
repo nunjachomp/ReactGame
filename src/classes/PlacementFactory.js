@@ -1,25 +1,42 @@
-import { GoalPlacement } from "../game-objects/GoalPlacement";
+import {
+  PLACEMENT_TYPE_HERO,
+  PLACEMENT_TYPE_GOAL,
+  PLACEMENT_TYPE_WALL,
+  PLACEMENT_TYPE_FLOUR,
+  PLACEMENT_TYPE_CELEBRATION,
+  PLACEMENT_TYPE_LOCK,
+   PLACEMENT_TYPE_KEY,
+} from "../helpers/consts";
 import { HeroPlacement } from "../game-objects/HeroPlacement";
-import { PLACEMENT_TYPE_GOAL, PLACEMENT_TYPE_HERO } from "../helpers/consts";
+import { GoalPlacement } from "../game-objects/GoalPlacement";
+import { WallPlacement } from "../game-objects/WallPlacement";
+import { FlourPlacement } from "../game-objects/FlourPlacement";
+import { CelebrationPlacement } from "../game-objects/CelebrationPlacement";
+import { LockPlacement } from "../game-objects/LockPlacement";
+ import { KeyPlacement } from "../game-objects/KeyPlacement";
+
+ 
+const placementTypeClassMap = {
+  [PLACEMENT_TYPE_HERO]: HeroPlacement,
+  [PLACEMENT_TYPE_GOAL]: GoalPlacement,
+  [PLACEMENT_TYPE_WALL]: WallPlacement,
+  [PLACEMENT_TYPE_FLOUR]: FlourPlacement,
+  [PLACEMENT_TYPE_CELEBRATION]: CelebrationPlacement,
+  [PLACEMENT_TYPE_LOCK]: LockPlacement,
+   [PLACEMENT_TYPE_KEY]: KeyPlacement,
+};
 
 class PlacementFactory {
   createPlacement(config, level) {
-    const instance = this.getInstance(config, level);
-    // Generate ID here later
-    return instance;
-  }
-  getInstance(config, level) {
-    //Switching between placements in game
-    switch (config.type) {
-      case PLACEMENT_TYPE_HERO:
-        return new HeroPlacement(config, level);
-      case PLACEMENT_TYPE_GOAL:
-        return new GoalPlacement(config, level);
-      default:
-        console.warn("No type found", config.type);
-        return null;
+    const placementClass = placementTypeClassMap[config.type];
+    if (!placementClass) {
+      console.warn("NO TYPE FOUND", config.type);
     }
-  }
+    // Generate a new instance with random ID
+    const instance = new placementClass(config, level);
+    instance.id = Math.floor(Math.random() * 9999999) + 1;
+    return instance;
+}
 }
 
 export const placementFactory = new PlacementFactory();
