@@ -32,9 +32,16 @@ export class Collision {
       return p.completesLevelOnCollide();
     });
   }
+
   withLock() {
     return this.placementsAtPosition.find((p) => {
       return p.canBeUnlocked();
+    });
+  }
+
+  withSelfGetsDamaged() {
+    return this.placementsAtPosition.find((p) => {
+      return p.damagesBodyOnCollide(this.forBody);
     });
   }
 }
