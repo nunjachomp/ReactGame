@@ -22,6 +22,7 @@ export class Placement {
     this.spriteWalkFrame = 0;
 
     this.hasBeenCollected = false;
+    this.canBeStolen = true;
   }
 
   tick() {}
@@ -43,6 +44,18 @@ export class Placement {
   }
 
   changesHeroSkinOnCollide() {
+    return null;
+  }
+
+  switchesDoorsOnCollide() {
+    return null;
+  }
+
+  teleportsToPositionOnCollide() {
+    return null;
+  }
+
+  stealsInventoryOnCollide() {
     return null;
   }
 
@@ -83,6 +96,12 @@ export class Placement {
   collect() {
     this.hasBeenCollected = true;
     this.level.inventory.add(this.addsItemToInventoryOnCollide());
+  }
+
+  resetHasBeenCollected() {
+    if (this.canBeStolen && this.hasBeenCollected) {
+      this.hasBeenCollected = false;
+    }
   }
 
   canBeUnlocked() {

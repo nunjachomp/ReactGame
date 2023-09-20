@@ -17,6 +17,7 @@ import Body from "../components/object-graphics/Body";
    [BODY_SKINS.SCARED]: [TILES.HERO_DEATH_LEFT, TILES.HERO_DEATH_RIGHT],
    [BODY_SKINS.ICE]: [TILES.HERO_ICE_LEFT, TILES.HERO_ICE_RIGHT],
    [BODY_SKINS.CONVEYOR]: [TILES.HERO_CONVEYOR_LEFT, TILES.HERO_CONVEYOR_RIGHT],
+   [BODY_SKINS.TELEPORT]: [TILES.HERO_TELEPORT_LEFT, TILES.HERO_TELEPORT_RIGHT],
    [HERO_RUN_1]: [TILES.HERO_RUN_1_LEFT, TILES.HERO_RUN_1_RIGHT],
    [HERO_RUN_2]: [TILES.HERO_RUN_2_LEFT, TILES.HERO_RUN_2_RIGHT],
  };
@@ -27,7 +28,7 @@ import Body from "../components/object-graphics/Body";
     super(properties, level);
     this.canCollectItems = true;
     this.canCompleteLevel = true;
-    this.allowsAutoMovement = true;
+    this.interactsWithGround = true;
   }
   
    controllerMoveRequested(direction) {
@@ -65,6 +66,10 @@ import Body from "../components/object-graphics/Body";
 
    onAutoMovement(direction) {
     this.controllerMoveRequested(direction);
+  }
+
+  takesDamage(deathType) {
+    this.level.setDeathOutcome(deathType);
   }
  
    zIndex() {

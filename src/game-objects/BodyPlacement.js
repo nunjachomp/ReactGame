@@ -8,6 +8,7 @@ import {
   Z_INDEX_LAYER_SIZE,
 } from "../helpers/consts";
 import { Collision } from "../classes/Collision";
+import soundsManager, { SFX } from "../classes/Sounds";
 
 export class BodyPlacement extends Placement {
   getCollisionAtNextPosition(direction) {
@@ -99,6 +100,7 @@ export class BodyPlacement extends Placement {
       this.skin = changesHeroSkin.changesHeroSkinOnCollide();
     }
 
+        // Adding to inventory
     const collideThatAddsToInventory = collision.withPlacementAddsToInventory();
     if (collideThatAddsToInventory) {
       collideThatAddsToInventory.collect();
@@ -107,24 +109,52 @@ export class BodyPlacement extends Placement {
         x: this.x,
         y: this.y,
       });
+      soundsManager.playSfx(SFX.COLLECT);
     }
 
+     // Auto moving (Conveyors, Ice, etc)
     const autoMovePlacement = collision.withPlacementMovesBody();
     if (autoMovePlacement) {
             this.onAutoMovement(autoMovePlacement.autoMovesBodyOnCollide(this));
     }
 
-    const takesDamages = collision.withSelfGetsDamaged();
-    if (takesDamages) {
-      this.level.setDeathOutcome(takesDamages.type);
+      // Purple switches
+    if (collision.withDoorSwitch()) {
+      this.level.switchAllDoors();
     }
 
+      // Resets inventory
+      if (collision.withStealsInventory()) {
+        this.level.stealInventory();
+      }
+
+    // Teleports
+    const teleport = collision.withTeleport();
+    if (teleport) {
+      const pos = teleport.teleportsToPositionOnCollide(this);
+      this.x = pos.x;
+      this.y = pos.y;
+      soundsManager.playSfx(SFX.TELEPORT);
+    }
+
+     // Damaging and death
+    const takesDamages = collision.withSelfGetsDamaged();
+    if (takesDamages) {
+      this.takesDamage(takesDamages.type);
+    }
+
+    // Finishing the level
     const completesLevel = collision.withCompletesLevel();
     if (completesLevel) {
       this.level.completeLevel();
+      soundsManager.playSfx(SFX.WIN);
     }
   }
 
+  takesDamage() {
+    return null;
+  }
+  
   getYTranslate() {
     // Stand on ground when not moving
     if (this.movingPixelsRemaining === 0 || this.skin !== BODY_SKINS.NORMAL) {

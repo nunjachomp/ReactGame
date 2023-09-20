@@ -4,11 +4,11 @@ import LevelBackgroundTilesLayer from "./LevelBackgroundTilesLayer";
 import LevelPlacementsLayer from "./LevelPlacementsLayer";
 import { useEffect, useState } from "react";
 import { LevelState } from "../../classes/LevelState";
-import FlourCount from "../hud/FlourCount";
 import LevelCompleteMessage from "../hud/LevelCompleteMessage";
 import DeathMessage from "../hud/DeathMessage";
 import { useRecoilValue } from "recoil";
 import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
+import TopHud from "../hud/TopHud";
 
 
 export default function RenderLevel() {
@@ -36,6 +36,7 @@ export default function RenderLevel() {
     return null;
   }
 
+  const cameraTranslate = `translate3d(${level.cameraTransformX}, ${level.cameraTransformY}, 0)`;
 
   return (
 
@@ -46,12 +47,20 @@ export default function RenderLevel() {
       }}
     >
       <div className={styles.gameScreen}>
-        <LevelBackgroundTilesLayer level={level} />
-        <LevelPlacementsLayer level={level} />
+      <div
+           style={{
+             transform: cameraTranslate,
+           }}
+         >
+           <LevelBackgroundTilesLayer level={level} />
+           <LevelPlacementsLayer level={level} />
+         </div>
+         {level.isCompleted && <LevelCompleteMessage />}
+         {level.deathOutcome && <DeathMessage level={level} />}
+
       </div>
-      <FlourCount level={level} />
-      {level.isCompleted && <LevelCompleteMessage />}
-      {level.deathOutcome && <DeathMessage level={level} />}
+      <TopHud level={level} />
+      
     </div>
   );
 }

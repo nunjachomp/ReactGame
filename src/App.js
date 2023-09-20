@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import RenderLevel from "../src/components/level-layout/RenderLevel";
 import { useRecoilState } from "recoil";
 import { spriteSheetImageAtom } from "./atoms/spriteSheetImageAtom";
+import soundsManager from "./classes/Sounds";
+ 
+ soundsManager.init();
 
 const App = () => {
   const [spriteSheetImage, setSpriteSheetImage] =

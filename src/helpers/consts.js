@@ -14,18 +14,26 @@ export const PLACEMENT_TYPE_WATER = "WATER";
 export const PLACEMENT_TYPE_FIRE = "FIRE";
 export const PLACEMENT_TYPE_ICE = "ICE";
 export const PLACEMENT_TYPE_CONVEYOR = "CONVEYOR";
+export const PLACEMENT_TYPE_TELEPORT = "TELEPORT";
+export const PLACEMENT_TYPE_THIEF = "THIEF";
 export const PLACEMENT_TYPE_WATER_PICKUP = "WATER_PICKUP";
 export const PLACEMENT_TYPE_FIRE_PICKUP = "FIRE_PICKUP";
 export const PLACEMENT_TYPE_ICE_PICKUP = "ICE_PICKUP";
 export const PLACEMENT_TYPE_GROUND_ENEMY = "GROUND_ENEMY";
 export const PLACEMENT_TYPE_FLYING_ENEMY = "FLYING_ENEMY";
 export const PLACEMENT_TYPE_ROAMING_ENEMY = "ROAMING_ENEMY";
+export const PLACEMENT_TYPE_CIABATTA = "CIABATTA";
+
+export const PLACEMENT_TYPE_SWITCH_DOOR = "SWITCH_DOOR";
+export const PLACEMENT_TYPE_SWITCH = "SWITCH";
 
 
 export const DIRECTION_LEFT = "LEFT";
 export const DIRECTION_RIGHT = "RIGHT";
 export const DIRECTION_UP = "UP";
 export const DIRECTION_DOWN = "DOWN";
+
+export const DEATH_TYPE_CLOCK = "CLOCK";
 
 export const directionUpdateMap = {
   [DIRECTION_LEFT]: { x: -1, y: 0 },
