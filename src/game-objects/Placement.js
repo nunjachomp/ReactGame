@@ -33,6 +33,10 @@ export class Placement {
     return null;
   }
 
+  damagesBodyOnCollide(_body) {
+    return null;
+  }
+
   completesLevelOnCollide() {
     return false;
   }
@@ -62,16 +66,19 @@ export class Placement {
     }
   }
 
-  zIndex() {
-    return 1;
-  }
-
    
   collect() {
     this.hasBeenCollected = true;
     this.level.inventory.add(this.addsItemToInventoryOnCollide());
   }
 
+  canBeUnlocked() {
+    return false;
+  }
+
+  zIndex() {
+    return 1;
+  }
 
   renderComponent() {
     return null;
