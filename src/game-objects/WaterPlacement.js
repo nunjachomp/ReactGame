@@ -1,6 +1,5 @@
 import { Placement } from "./Placement";
 import Sprite from "../components/object-graphics/Sprite";
-import { TILES } from "../helpers/tiles";
 import {
   BODY_SKINS,
   PLACEMENT_TYPE_HERO,
@@ -13,6 +12,10 @@ export class WaterPlacement extends Placement {
     return BODY_SKINS.WATER;
   }
 
+  isSolidForBody(body) {
+    return body.turnsAroundAtWater ?? false;
+  }
+
   damagesBodyOnCollide(body) {
      const { inventory } = this.level;
      return (
@@ -22,6 +25,7 @@ export class WaterPlacement extends Placement {
   }
 
   renderComponent() {
-    return <Sprite frameCoord={TILES.WATER1} />;
+    const waterFrame = this.level.animatedFrames.waterFrame;
+    return <Sprite frameCoord={waterFrame} />;
   }
 }

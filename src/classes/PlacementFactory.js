@@ -8,6 +8,14 @@ import {
   PLACEMENT_TYPE_KEY,
   PLACEMENT_TYPE_WATER,
   PLACEMENT_TYPE_WATER_PICKUP,
+  PLACEMENT_TYPE_GROUND_ENEMY,
+  PLACEMENT_TYPE_FLYING_ENEMY,
+  PLACEMENT_TYPE_ROAMING_ENEMY,
+  PLACEMENT_TYPE_CONVEYOR,
+  PLACEMENT_TYPE_ICE,
+  PLACEMENT_TYPE_ICE_PICKUP,
+  PLACEMENT_TYPE_FIRE,
+  PLACEMENT_TYPE_FIRE_PICKUP,
 } from "../helpers/consts";
 import { HeroPlacement } from "../game-objects/HeroPlacement";
 import { GoalPlacement } from "../game-objects/GoalPlacement";
@@ -18,6 +26,14 @@ import { LockPlacement } from "../game-objects/LockPlacement";
 import { KeyPlacement } from "../game-objects/KeyPlacement";
 import { WaterPlacement } from "../game-objects/WaterPlacement";
 import { WaterPickupPlacement } from "../game-objects/WaterPickupPlacement";
+import { GroundEnemyPlacement } from "../game-objects/GroundEnemyPlacement";
+import { FlyingEnemyPlacement } from "../game-objects/FlyingEnemyPlacement";
+import { RoamingEnemyPlacement } from "../game-objects/RoamingEnemyPlacement";
+import { ConveyorPlacement } from "../game-objects/ConveyorPlacement";
+import { IcePlacement } from "../game-objects/IcePlacement";
+import { IcePickupPlacement } from "../game-objects/IcePickupPlacement";
+import { FirePlacement } from "../game-objects/FirePlacement";
+import { FirePickupPlacement } from "../game-objects/FirePickupPlacement";
 
  
 const placementTypeClassMap = {
@@ -30,6 +46,14 @@ const placementTypeClassMap = {
   [PLACEMENT_TYPE_KEY]: KeyPlacement,
   [PLACEMENT_TYPE_WATER]: WaterPlacement,
   [PLACEMENT_TYPE_WATER_PICKUP]: WaterPickupPlacement,
+  [PLACEMENT_TYPE_GROUND_ENEMY]: GroundEnemyPlacement,
+  [PLACEMENT_TYPE_FLYING_ENEMY]: FlyingEnemyPlacement,
+  [PLACEMENT_TYPE_ROAMING_ENEMY]: RoamingEnemyPlacement,
+  [PLACEMENT_TYPE_CONVEYOR]: ConveyorPlacement,
+  [PLACEMENT_TYPE_ICE]: IcePlacement,
+   [PLACEMENT_TYPE_ICE_PICKUP]: IcePickupPlacement,
+   [PLACEMENT_TYPE_FIRE]: FirePlacement,
+   [PLACEMENT_TYPE_FIRE_PICKUP]: FirePickupPlacement,
 };
 
 class PlacementFactory {
