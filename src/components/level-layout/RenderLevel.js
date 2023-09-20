@@ -7,7 +7,7 @@ import { LevelState } from "../../classes/LevelState";
 import FlourCount from "../hud/FlourCount"
 import LevelCompleteMessage from "../hud/LevelCompleteMessage";
 import { useRecoilValue } from "recoil";
-import { currentLevelIdAtom } from "../../atoms/currentLevelidAtom";
+import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
 
 
 export default function RenderLevel() {

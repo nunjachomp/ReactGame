@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import LevelsMap from "../../levels/LevelsMap";
-import { currentLevelIdAtom } from "../../atoms/currentLevelidAtom";
+import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
 
 export default function LevelCompleteMessage() {
   const [currentId, setCurrentId] = useRecoilState(currentLevelIdAtom);
