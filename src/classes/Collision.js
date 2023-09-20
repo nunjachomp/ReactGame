@@ -44,4 +44,10 @@ export class Collision {
       return p.damagesBodyOnCollide(this.forBody);
     });
   }
+
+  withChangesHeroSkin() {
+    return this.placementsAtPosition.find((p) => {
+      return p.changesHeroSkinOnCollide();
+    });
+  }
 }
