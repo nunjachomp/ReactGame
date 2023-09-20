@@ -1,16 +1,17 @@
 import { Placement } from "./Placement";
 import {
-  BODY_SKINS,
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
   directionUpdateMap,
-  PLACEMENT_TYPE_CELEBRATION,
+  BODY_SKINS,
   Z_INDEX_LAYER_SIZE,
-} from "../helpers/consts";
-import { Collision } from "../classes/Collision";
+  PLACEMENT_TYPE_CELEBRATION,
+  } from "../helpers/consts";
+  import { Collision } from "../classes/Collision";
 import soundsManager, { SFX } from "../classes/Sounds";
 
 export class BodyPlacement extends Placement {
+
   getCollisionAtNextPosition(direction) {
     const { x, y } = directionUpdateMap[direction];
     const nextX = this.x + x;
@@ -33,40 +34,40 @@ export class BodyPlacement extends Placement {
        return true;
      }
 
-    const collision = this.getCollisionAtNextPosition(direction);
-    const isOutOfBounds = this.level.isPositionOutOfBounds(
-      collision.x,
-      collision.y
-    );
-    if (isOutOfBounds) {
-      return true;
-    }
-    return Boolean(collision.withSolidPlacement());
-  }
+     const collision = this.getCollisionAtNextPosition(direction);
+        const isOutOfBounds = this.level.isPositionOutOfBounds(
+          collision.x,
+          collision.y
+        );
+        if (isOutOfBounds) {
+          return true;
+        }
+        return Boolean(collision.withSolidPlacement());
+      }
 
-  updateFacingDirection() {
-    if (
-      this.movingPixelDirection === DIRECTION_LEFT ||
-      this.movingPixelDirection === DIRECTION_RIGHT
-    ) {
-      this.spriteFacingDirection = this.movingPixelDirection;
-    }
-  }
+      updateFacingDirection() {
+        if (
+          this.movingPixelsDirection === DIRECTION_LEFT ||
+          this.movingPixelsDirection === DIRECTION_RIGHT
+        ) {
+          this.spriteFacingDirection = this.movingPixelsDirection;
+        }
+      }
 
-  updateWalkFrame() {
-    this.spriteWalkFrame = this.spriteWalkFrame === 1 ? 0 : 1;
-  }
+      updateWalkFrame() {
+        this.spriteWalkFrame = this.spriteWalkFrame === 1 ? 0 : 1; //Determines which arm is moving
+      }
 
-  tick() {
-    this.tickMovingPixelProgress();
-    this.tickAttemptAiMove();
-  }
+      tick() {
+        this.tickMovingPixelProgress();
+        this.tickAttemptAiMove();
+      }
 
   tickMovingPixelProgress() {
     if (this.movingPixelsRemaining === 0) {
       return;
     }
-    this.movingPixelsRemaining -= this.travelPixelsPerFrame;
+    this.movingPixelsRemaining -= this.travelPixelPerFrame;
     if (this.movingPixelsRemaining <= 0) {
       this.movingPixelsRemaining = 0;
       this.onDoneMoving();
@@ -74,8 +75,8 @@ export class BodyPlacement extends Placement {
   }
 
   onDoneMoving() {
-    //Update my x/y!
-    const { x, y } = directionUpdateMap[this.movingPixelDirection];
+    //Updating x/y of hero
+    const { x, y } = directionUpdateMap[this.movingPixelsDirection];
     this.x += x;
     this.y += y;
     this.handleCollisions();
