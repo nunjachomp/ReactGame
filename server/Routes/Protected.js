@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const PlayerController = require('../Controller/PlayerController')
+const {auth} = require('../Middleware/PlayerMiddleware')
 
-router.get('/', (req, res) => {
-    try{
-        res.send('hello from protected');
-    }catch(err){
-        console.log(err);
-    }
-    
-});
+
+router.post('/' ,PlayerController.logUser);
 
 module.exports = router;
