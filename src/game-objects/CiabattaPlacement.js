@@ -55,7 +55,7 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
     }
 
     //Turn if next to a wall
-    const direction = this.movingPixelDirection;
+    const direction = this.movingPixelsDirection;
     if (this.isSolidAtNextPosition(direction)) {
       this.switchDirection();
       return;
@@ -65,7 +65,7 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
     if (this.movingPixelsRemaining === 0) {
       this.ticksUntilNextMove = this.tickBetweenMovesInterval;
       this.movingPixelsRemaining = CELL_SIZE;
-      this.movingPixelDirection = direction;
+      this.movingPixelsDirection = direction;
       this.updateFacingDirection();
       this.updateWalkFrame();
     }
