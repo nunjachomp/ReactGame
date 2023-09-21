@@ -22,47 +22,20 @@ import {
     PLACEMENT_TYPE_THIEF,
     PLACEMENT_TYPE_CIABATTA
   } from "../helpers/consts";
+
+  const specialTiles = [{ x: 25, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 7, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 25, y: 8, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 26, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 26, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 26, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 26, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 26, y: 7, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 27, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 27, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 27, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 27, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 27, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 27, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 27, y: 7, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 28, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 28, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 28, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 28, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 28, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 28, y: 7, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 28, y: 8, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 29, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 29, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 29, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 29, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 29, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 29, y: 8, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 30, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 30, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 30, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 30, y: 8, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 31, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 31, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 31, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 31, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 31, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 31, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 31, y: 7, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 31, y: 8, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 32, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 32, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 32, y: 3, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 32, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 32, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },{ x: 32, y: 6, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" },{ x: 32, y: 7, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{ x: 32, y: 8, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },{type: PLACEMENT_TYPE_LOCK, color: "GREEN","x":16,"y":3},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":15,"y":30},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":15,"y":29},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":15,"y":28},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":16,"y":28},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":17,"y":28},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":18,"y":28},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":18,"y":29},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true,"x":18,"y":30},{type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: false,"x":30,"y":31},{type: PLACEMENT_TYPE_KEY, color: "GREEN","x":1,"y":32}];
   
   const level = {
     theme: LEVEL_THEMES.GREEN,
-    tilesWidth: 8,
-    tilesHeight: 8,
-    placements: [
-      { x: 6, y: 5, type: PLACEMENT_TYPE_HERO },
-      // { x: 2, y: 1, type: PLACEMENT_TYPE_GROUND_ENEMY },
-      { x: 7, y: 4, type: PLACEMENT_TYPE_GOAL },
+    tilesWidth: 32,
+    tilesHeight: 32,
+    placements: [{"type":"HERO","x":16,"y":32},{"type":"WALL","x":15,"y":32},{"type":"WALL","x":18,"y":32},{"type":"WALL","x":18,"y":31},{"type":"WALL","x":19,"y":31},{"type":"WALL","x":15,"y":31},{"type":"WALL","x":14,"y":31},{"type":"WATER","x":4,"y":32},{"type":"WATER","x":4,"y":31},{"type":"WATER","x":4,"y":30},{"type":"WATER","x":1,"y":29},{"type":"WATER","x":2,"y":29},{"type":"WATER","x":3,"y":29},{"type":"WATER","x":4,"y":29},{"type":"GOAL","x":16,"y":1},{"type":"WALL","x":18,"y":1},{"type":"WALL","x":18,"y":2},{"type":"WALL","x":14,"y":1},{"type":"WALL","x":14,"y":2},{"type":"WALL","x":14,"y":3},{"type":"WALL","x":18,"y":3},{"type":"WALL","x":17,"y":3},{"type":"WALL","x":15,"y":3},{"type":"SWITCH","x":17,"y":29},{"type":"FLOUR","x":32,"y":32},{"type":"FIRE","x":30,"y":30},{"type":"FIRE","x":31,"y":30},{"type":"FIRE","x":32,"y":30},{"type":"FIRE","x":30,"y":32},{"type":"WATER","x":32,"y":26},{"type":"WATER","x":31,"y":26},{"type":"WATER","x":30,"y":26},{"type":"WATER","x":30,"y":25},{"type":"WATER","x":29,"y":24},{"type":"WATER","x":30,"y":24},{"type":"WATER","x":28,"y":24},{"type":"WATER","x":27,"y":24},{"type":"WATER","x":26,"y":24},{"type":"WATER","x":26,"y":23},{"type":"WATER","x":26,"y":22},{"type":"WATER","x":26,"y":21},{"type":"WATER","x":26,"y":20},{"type":"WATER","x":27,"y":20},{"type":"WATER","x":28,"y":20},{"type":"WATER","x":29,"y":20},{"type":"WATER","x":30,"y":20},{"type":"WATER","x":31,"y":20},{"type":"FLOUR","x":29,"y":22},{"type":"THIEF","x":32,"y":20},{"type":"WALL","x":5,"y":7},{"type":"WALL","x":6,"y":7},{"type":"WALL","x":7,"y":7},{"type":"WALL","x":8,"y":7},{"type":"WALL","x":9,"y":7},{"type":"WALL","x":9,"y":8},{"type":"WALL","x":10,"y":8},{"type":"WALL","x":11,"y":8},{"type":"WALL","x":11,"y":9},{"type":"WALL","x":11,"y":10},{"type":"WALL","x":9,"y":10},{"type":"WALL","x":8,"y":10},{"type":"WALL","x":7,"y":9},{"type":"WALL","x":6,"y":9},{"type":"WALL","x":5,"y":9},{"type":"WALL","x":9,"y":11},{"type":"WALL","x":11,"y":11},{"type":"WALL","x":4,"y":7},{"type":"WALL","x":3,"y":7},{"type":"WALL","x":2,"y":7},{"type":"WALL","x":1,"y":7},{"type":"WALL","x":4,"y":9},{"type":"WALL","x":3,"y":9},{"type":"WALL","x":3,"y":10},{"type":"WALL","x":3,"y":11},{"type":"WALL","x":2,"y":11},{"type":"WALL","x":1,"y":11},{"type":"FLOUR","x":1,"y":9},{"type":"LOCK","x":3,"y":8},{"type":"SWITCH_DOOR","x":10,"y":11},{"type":"KEY","x":32,"y":24},{"type":"WATER_PICKUP","x":30,"y":1},{"type":"WALL","x":24,"y":1},{"type":"WALL","x":24,"y":2},{"type":"WALL","x":24,"y":3},{"type":"WALL","x":24,"y":4},{"type":"WALL","x":24,"y":5},{"type":"WALL","x":24,"y":6},{"type":"WALL","x":24,"y":7},{"type":"WALL","x":24,"y":8},{"type":"WALL","x":24,"y":9},{"type":"WALL","x":25,"y":9},{"type":"WALL","x":27,"y":9},{"type":"WALL","x":28,"y":9},{"type":"WALL","x":29,"y":9},{"type":"WALL","x":30,"y":9},{"type":"WALL","x":31,"y":9},{"type":"WALL","x":32,"y":9},{"type":"FIRE","x":1,"y":30},{"type":"FIRE","x":2,"y":30},{"type":"FIRE","x":3,"y":30},{"type":"FIRE","x":3,"y":31},{"type":"FIRE","x":3,"y":32},{"type":"FLOUR","x":26,"y":2},{"type":"WATER","x":2,"y":6},{"type":"WATER","x":1,"y":6},{"type":"WATER","x":3,"y":6},{"type":"WATER","x":4,"y":6},{"type":"WATER","x":5,"y":6},{"type":"WATER","x":6,"y":6},{"type":"WATER","x":7,"y":6},{"type":"WATER","x":8,"y":6},{"type":"WATER","x":9,"y":6},{"type":"WATER","x":9,"y":5},{"type":"WATER","x":9,"y":4},{"type":"WATER","x":9,"y":3},{"type":"WATER","x":9,"y":2},{"type":"WATER","x":9,"y":1},{"type":"WATER","x":8,"y":1},{"type":"WATER","x":8,"y":4},{"type":"WATER","x":8,"y":3},{"type":"WATER","x":8,"y":2},{"type":"WATER","x":8,"y":5},{"type":"WATER","x":1,"y":5},{"type":"WATER","x":2,"y":5},{"type":"WATER","x":3,"y":5},{"type":"WATER","x":4,"y":5},{"type":"WATER","x":5,"y":5},{"type":"WATER","x":6,"y":5},{"type":"WATER","x":7,"y":5},{"type":"TELEPORT","x":19,"y":6},{"type":"TELEPORT","x":26,"y":10},{"type":"FIRE","x":32,"y":12},{"type":"FIRE","x":31,"y":12},{"type":"FIRE","x":30,"y":12},{"type":"FIRE","x":29,"y":12},{"type":"FIRE","x":28,"y":12},{"type":"FIRE","x":28,"y":13},{"type":"FIRE","x":28,"y":15},{"type":"FIRE","x":28,"y":16},{"type":"FIRE","x":29,"y":16},{"type":"FIRE","x":31,"y":16},{"type":"FIRE","x":32,"y":16},{"type":"FIRE","x":30,"y":16},{"type":"ICE","x":28,"y":14},{"type":"ICE","x":29,"y":14},{"type":"ICE","x":29,"y":13},{"type":"ICE","x":30,"y":13},{"type":"ICE","x":31,"y":13},{"type":"ICE","x":30,"y":15},{"type":"ICE","x":29,"y":15},{"type":"ICE","x":30,"y":14},{"type":"ICE","x":31,"y":14},{"type":"ICE","x":31,"y":15},{"type":"FIRE","x":32,"y":13},{"type":"FIRE","x":32,"y":15},{"type":"FIRE","x":32,"y":14},{"type":"SWITCH","x":28,"y":4},{"type":"ICE","x":13,"y":24},{"type":"ICE","x":14,"y":24},{"type":"ICE","x":14,"y":25},{"type":"ICE","x":13,"y":25},{"type":"ICE","x":12,"y":23},{"type":"ICE","x":13,"y":23},{"type":"ICE","x":14,"y":23},{"type":"ICE","x":12,"y":24},{"type":"ICE","x":12,"y":25}, ...specialTiles ]
 
-      { x: 3, y: 1, type: PLACEMENT_TYPE_CIABATTA },
-      { x: 5, y: 1, type: PLACEMENT_TYPE_FIRE },
 
-      { x: 3, y: 2, type: PLACEMENT_TYPE_TELEPORT },
-
-      { x: 7, y: 3, type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: false },
-      { x: 4, y: 3, type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true },
-      { x: 4, y: 2, type: PLACEMENT_TYPE_SWITCH },
-      { x: 5, y: 2, type: PLACEMENT_TYPE_THIEF },
-  
-      { x: 8, y: 2, type: PLACEMENT_TYPE_WALL },
-      { x: 8, y: 1, type: PLACEMENT_TYPE_FLOUR },
-  
-      { x: 1, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },
-      { x: 1, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },
-  
-      { x: 3, y: 4, type: PLACEMENT_TYPE_FIRE },
-      { x: 4, y: 4, type: PLACEMENT_TYPE_FIRE_PICKUP },
-      { x: 5, y: 4, type: PLACEMENT_TYPE_FIRE },
-  
-      { x: 4, y: 7, type: PLACEMENT_TYPE_ICE_PICKUP },
-      { x: 3, y: 6, type: PLACEMENT_TYPE_ICE, corner: "TOP_LEFT" },
-      { x: 3, y: 7, type: PLACEMENT_TYPE_ICE },
-      { x: 3, y: 8, type: PLACEMENT_TYPE_ICE, corner: "BOTTOM_LEFT" },
-      { x: 5, y: 6, type: PLACEMENT_TYPE_ICE, corner: "TOP_RIGHT" },
-      { x: 5, y: 7, type: PLACEMENT_TYPE_ICE },
-      { x: 5, y: 8, type: PLACEMENT_TYPE_ICE, corner: "BOTTOM_RIGHT" },
-  
-      { x: 6, y: 8, type: PLACEMENT_TYPE_WATER_PICKUP },
-      { x: 7, y: 8, type: PLACEMENT_TYPE_WATER },
-    ],
   };
   
   export default level;
+
+  // { x: 7, y: 3, type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: false },
+      // { x: 1, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },
+      // { x: 3, y: 6, type: PLACEMENT_TYPE_ICE, corner: "TOP_LEFT" },
