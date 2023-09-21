@@ -1,0 +1,69 @@
+@import url('https://fonts.cdnfonts.com/css/arcade-classic');
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.authMain{
+  position: absolute;
+  top:7%;
+  left: 42%;
+  background-color: gold;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 5px;
+  border:#625749 1px solid;
+}
+
+
+li.autBtn{
+  cursor: pointer;
+  display: flex;
+  font-family: 'ArcadeClassic', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;                                            
+  background-color: transparent ;
+  color: darkblue;
+  padding: 20px;
+  border:  1px solid black;
+  border: none;
+}
+
+
+body {background: #625749; position: relative;}
+
+body::-webkit-scrollbar {display: none;}
+
+.running-girl {
+    top: 50%;
+    float: left;
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/39373/game-girl-walking.png),
+        0 0 repeat;
+    background-size: 4000px 218px;
+    background-position: 0px 0px;
+    position: fixed;
+    display: block;
+    left: 22%;
+    margin: -104px 0 0 -104px;
+    width: 200px;
+    height: 218px;
+}
+
+.background {
+    position: fixed;
+    top: 50%;
+    margin-top: -525px;
+    z-index: -1;
+    width: 100%;
+    height: 800px;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/39373/game_bg.png'),
+        0 0 repeat-x;
+}
+
+
