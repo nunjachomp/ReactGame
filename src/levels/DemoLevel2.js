@@ -11,11 +11,7 @@ import {
     tilesWidth: 8,
     tilesHeight: 5,
     placements: [
-      { x: 1, y: 1, type: PLACEMENT_TYPE_HERO },
-      { x: 7, y: 5, type: PLACEMENT_TYPE_GOAL },
-      { x: 4, y: 4, type: PLACEMENT_TYPE_WALL },
-      { x: 3, y: 2, type: PLACEMENT_TYPE_FLOUR },
-      { x: 6, y: 4, type: PLACEMENT_TYPE_FLOUR },
+      {"type":"HERO","x":4,"y":2},{"type":"GOAL","x":7,"y":5},{"type":"WALL","x":4,"y":4},{"type":"FLOUR","x":3,"y":2},{"type":"FLOUR","x":6,"y":4},{"type":"LOCK","x":5,"y":1},{"type":"KEY","x":5,"y":3},{"type":"LOCK","x":5,"y":2},{"type":"LOCK","x":5,"y":4},{"type":"LOCK","x":5,"y":5}
     ],
   };
   

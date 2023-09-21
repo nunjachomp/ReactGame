@@ -15,6 +15,11 @@ export class GoalPlacement extends Placement {
   completesLevelOnCollide() {
     return !this.isDisabled;
   }
+
+  canBeDeleted() {
+    return false;
+  }
+  
   renderComponent() {
     return (
       <Sprite
