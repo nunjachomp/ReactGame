@@ -1,27 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { RecoilRoot } from "recoil";
+import { RecoilRoot } from 'recoil';
 import { BrowserRouter } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { PlayerContextProvider } from './Context/PlayerContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-    <PlayerContextProvider>
       <Auth0Provider
-        domain='gameitc.eu.auth0.com'
-        clientId='J6O1eJSfkckaZAXJGt4mqQtSLTSMKwQf'
-        authorizationParams={{ redirectUri: window.location.origin }}
-        useRefreshTokens={true}>
+        domain="gameitc.eu.auth0.com"
+        clientId="J6O1eJSfkckaZAXJGt4mqQtSLTSMKwQf"
+        redirectUri={window.location.origin}
+        useRefreshTokens={true}
+      >
+        <PlayerContextProvider>
           <RecoilRoot>
-              <App />
+            <App />
           </RecoilRoot>
+        </PlayerContextProvider>
       </Auth0Provider>
-      </PlayerContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
