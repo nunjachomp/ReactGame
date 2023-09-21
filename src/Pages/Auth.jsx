@@ -1,6 +1,6 @@
 
 import { useAuth0 } from "@auth0/auth0-react";
-import "./AuthGame.css";
+import './AuthGame.css';
 import React, { useEffect } from 'react';
 import skrollr from 'skrollr';
 
