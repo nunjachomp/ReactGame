@@ -1,14 +1,14 @@
 import TutorialLevel from "./TutorialLevel";
 import ExplorationLevel from "./ExplorationLevel";
 import IceLevel from "./IceLevel";
-import DemoLevel4 from "./DemoLevel4";
+import LoveLevel from "./LoveLevel";
 import DemoLevel5 from "./DemoLevel5";
 
 const Levels = {
   TutorialLevel: TutorialLevel,
   ExplorationLevel: ExplorationLevel,
   IceLevel: IceLevel,
-  DemoLevel4: DemoLevel4,
+  LoveLevel: LoveLevel,
   DemoLevel5: DemoLevel5,
 };
 
