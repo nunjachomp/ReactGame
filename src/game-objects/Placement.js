@@ -3,6 +3,7 @@ import {
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
   DIRECTION_UP,
+  BODY_SKINS,
 } from "../helpers/consts";
 
 export class Placement {
@@ -13,6 +14,7 @@ export class Placement {
     this.y = properties.y;
     this.level = level;
 
+    this.skin = BODY_SKINS.NORMAL;
     this.travelPixelPerFrame = 1.5;
     this.movingPixelsRemaining = 0;
     this.movingPixelsDirection = DIRECTION_RIGHT;
@@ -20,16 +22,40 @@ export class Placement {
     this.spriteWalkFrame = 0;
 
     this.hasBeenCollected = false;
+    this.canBeStolen = true;
   }
 
   tick() {}
 
-   
+  tickAttemptAiMove() {
+    return null;
+  }
+
   isSolidForBody(_body) {
     return false;
   }
 
   addsItemToInventoryOnCollide() {
+    return null;
+  }
+
+  autoMovesBodyOnCollide() {
+    return false;
+  }
+
+  changesHeroSkinOnCollide() {
+    return null;
+  }
+
+  switchesDoorsOnCollide() {
+    return null;
+  }
+
+  teleportsToPositionOnCollide() {
+    return null;
+  }
+
+  stealsInventoryOnCollide() {
     return null;
   }
 
@@ -70,6 +96,12 @@ export class Placement {
   collect() {
     this.hasBeenCollected = true;
     this.level.inventory.add(this.addsItemToInventoryOnCollide());
+  }
+
+  resetHasBeenCollected() {
+    if (this.canBeStolen && this.hasBeenCollected) {
+      this.hasBeenCollected = false;
+    }
   }
 
   canBeUnlocked() {

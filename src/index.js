@@ -11,15 +11,14 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Auth0Provider
-      domain='gameitc.eu.auth0.com'
-      clientId='J6O1eJSfkckaZAXJGt4mqQtSLTSMKwQf'
-      authorizationParams={{redirectUri:window.location.origin}}
-      useRefreshTokens={true} 
-      >
-          <RecoilRoot>
-            <App />
-          </RecoilRoot>
-        </Auth0Provider>
-      </BrowserRouter>
+        domain='gameitc.eu.auth0.com'
+        clientId='J6O1eJSfkckaZAXJGt4mqQtSLTSMKwQf'
+        authorizationParams={{ redirectUri: window.location.origin }}
+        useRefreshTokens={true}>
+        <RecoilRoot>
+          <App />
+        </RecoilRoot>
+      </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );

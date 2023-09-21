@@ -14,4 +14,8 @@ export class Inventory {
     this.inventoryMap.set(key, true);
     console.log(this.inventoryMap);
   }
+
+  clear() {
+    this.inventoryMap = new Map();
+  }
 }
