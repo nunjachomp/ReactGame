@@ -142,6 +142,7 @@ export class BodyPlacement extends Placement {
     const takesDamages = collision.withSelfGetsDamaged();
     if (takesDamages) {
       this.takesDamage(takesDamages.type);
+      soundsManager.playSfx(SFX.HURT);
     }
 
     // Finishing the level
