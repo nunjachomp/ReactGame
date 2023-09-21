@@ -5,11 +5,13 @@ import {
   PLACEMENT_TYPE_HERO,
   PLACEMENT_TYPE_WATER_PICKUP,
 } from "../helpers/consts";
+import soundsManager, { SFX } from "../classes/Sounds";
 
 export class WaterPlacement extends Placement {
 
   changesHeroSkinOnCollide() {
-    return BODY_SKINS.WATER;
+    soundsManager.playSfx(SFX.SWIM);
+    return BODY_SKINS.WATER
   }
 
   isSolidForBody(body) {

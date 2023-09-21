@@ -4,12 +4,30 @@ export const SFX = {
   COLLECT: "COLLECT",
   WIN: "WIN",
   TELEPORT: "TELEPORT",
+  CLOCK: "CLOCK",
+  HURT: "HURT",
+  LOCK: "LOCK",
+  SWITCH: "SWITCH",
+  SWIM: "SWIM",
+  CIABATTADIE: "CIABATTADIE",
+  CIABATTAHIT: "CIABATTAHIT",
+  TESTMUSIC: "TESTMUSIC",
+  LOSE: "LOSE",
 };
 
 const SFX_FILES = {
   [SFX.COLLECT]: "/sfx/collect.mp3",
-  [SFX.WIN]: "/sfx/win.mp3",
+  [SFX.WIN]: "/sfx/win.wav",
   [SFX.TELEPORT]: "/sfx/teleport.mp3",
+  [SFX.CLOCK]: "/sfx/clock.wav",
+  [SFX.HURT]: "/sfx/hurt.wav",
+  [SFX.LOCK]: "/sfx/lock.wav",
+  [SFX.SWITCH]: "sfx/switch.wav",
+  [SFX.SWIM]: "sfx/swim.wav",
+  [SFX.CIABATTADIE]: "sfx/ciabattadie.wav",
+  [SFX.CIABATTAHIT]: "sfx/ciabattahit.wav",
+  [SFX.LOSE]: "sfx/lose.wav",
+  [SFX.TESTMUSIC]: "sfx/testmusic.wav",
 };
 
 export class Sounds {

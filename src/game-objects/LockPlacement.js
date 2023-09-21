@@ -2,6 +2,7 @@ import { Placement } from "./Placement";
 import { LOCK_KEY_COLORS } from "../helpers/consts";
 import { TILES } from "../helpers/tiles";
 import Sprite from "../components/object-graphics/Sprite";
+import soundsManager, { SFX } from "../classes/Sounds";
 
 export class LockPlacement extends Placement {
   constructor(properties, level) {
@@ -33,6 +34,7 @@ export class LockPlacement extends Placement {
       return;
     }
     this.collectInFrames = 11;
+    soundsManager.playSfx(SFX.LOCK);
   }
 
   renderComponent() {

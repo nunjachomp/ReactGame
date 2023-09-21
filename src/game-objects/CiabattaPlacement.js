@@ -2,6 +2,7 @@ import { GroundEnemyPlacement } from "./GroundEnemyPlacement";
 import CiabattaBody from "../components/object-graphics/CiabattaBody";
 import { TILES } from "../helpers/tiles";
 import { CELL_SIZE, PLACEMENT_TYPE_ROAMING_ENEMY } from "../helpers/consts";
+import soundsManager, { SFX } from "../classes/Sounds";
 
 const ATTACKS = {
   TACKLE: "TACKLE",
@@ -191,10 +192,12 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
     // Apply pain frames
     this.painFramesRemaining = PAIN_FRAMES_LENGTH;
     this.hp -= 1;
+    soundsManager.playSfx(SFX.CIABATTAHIT);
 
     if (this.hp <= 0) {
       // Start counting death frames
       this.deathFramesUntilDisappear = DEATH_FRAMES_LENGTH;
+      soundsManager.playSfx(SFX.CIABATTADIE);
     }
   }
 

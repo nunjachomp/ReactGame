@@ -25,8 +25,8 @@ import {
   
   const level = {
     theme: LEVEL_THEMES.GREEN,
-    tilesWidth: 8,
-    tilesHeight: 8,
+    tilesWidth: 18,
+    tilesHeight: 18,
     placements: [
       { x: 6, y: 5, type: PLACEMENT_TYPE_HERO },
       // { x: 2, y: 1, type: PLACEMENT_TYPE_GROUND_ENEMY },
@@ -34,18 +34,20 @@ import {
 
       { x: 3, y: 1, type: PLACEMENT_TYPE_CIABATTA },
       { x: 5, y: 1, type: PLACEMENT_TYPE_FIRE },
+      { x: 6, y: 1, type: PLACEMENT_TYPE_FIRE },
+      { x: 7, y: 1, type: PLACEMENT_TYPE_FIRE },
 
-      { x: 3, y: 2, type: PLACEMENT_TYPE_TELEPORT },
+      { x: 3, y: 2, type: PLACEMENT_TYPE_LOCK },
+      { x: 3, y: 3, type: PLACEMENT_TYPE_KEY },
 
       { x: 7, y: 3, type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: false },
       { x: 4, y: 3, type: PLACEMENT_TYPE_SWITCH_DOOR, isRaised: true },
       { x: 4, y: 2, type: PLACEMENT_TYPE_SWITCH },
-      { x: 5, y: 2, type: PLACEMENT_TYPE_THIEF },
   
       { x: 8, y: 2, type: PLACEMENT_TYPE_WALL },
       { x: 8, y: 1, type: PLACEMENT_TYPE_FLOUR },
   
-      { x: 1, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },
+      { x: 1, y: 4, type: PLACEMENT_TYPE_CONVEYOR, direction: "UP" },
       { x: 1, y: 5, type: PLACEMENT_TYPE_CONVEYOR, direction: "DOWN" },
   
       { x: 3, y: 4, type: PLACEMENT_TYPE_FIRE },
@@ -62,6 +64,7 @@ import {
   
       { x: 6, y: 8, type: PLACEMENT_TYPE_WATER_PICKUP },
       { x: 7, y: 8, type: PLACEMENT_TYPE_WATER },
+      { x: 8, y: 8, type: PLACEMENT_TYPE_WATER },
     ],
   };
   

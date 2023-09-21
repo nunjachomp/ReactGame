@@ -1,6 +1,7 @@
 import { Placement } from "./Placement";
  import Sprite from "../components/object-graphics/Sprite";
  import { TILES } from "../helpers/tiles";
+ import soundsManager, { SFX } from "../classes/Sounds";
  
  export class SwitchableDoorPlacement extends Placement {
    constructor(properties, level) {
@@ -10,6 +11,7 @@ import { Placement } from "./Placement";
  
    toggleIsRaised() {
      this.isRaised = !this.isRaised;
+     soundsManager.playSfx(SFX.SWITCH);
    }
  
    isSolidForBody() {

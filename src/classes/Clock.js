@@ -1,4 +1,5 @@
 import { DEATH_TYPE_CLOCK } from "../helpers/consts";
+import soundsManager, { SFX } from "../classes/Sounds";
  
 const TIME_PER_TICK = 16.6;
 const WARNING_SOUND_SECONDS = 10;
@@ -25,7 +26,7 @@ export class Clock {
 
       // Warning sound effects!
       if (this.secondsRemaining <= WARNING_SOUND_SECONDS) {
-        // SFX Goes here...
+        soundsManager.playSfx(SFX.CLOCK);
         console.log("BINK!");
       }
     }
