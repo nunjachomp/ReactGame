@@ -15,7 +15,7 @@ export class GroundEnemyPlacement extends BodyPlacement {
     this.ticksUntilNextMove = this.tickBetweenMovesInterval;
     this.turnsAroundAtWater = true;
     this.interactsWithGround = true;
-    this.movingPixelDirection = properties.initialDirection ?? DIRECTION_RIGHT;
+    this.movingPixelsDirection = properties.initialDirection ?? DIRECTION_RIGHT;
   }
 
   tickAttemptAiMove() {
@@ -25,7 +25,7 @@ export class GroundEnemyPlacement extends BodyPlacement {
       this.ticksUntilNextMove -= 1;
       return;
     }
-    this.internalMoveRequested(this.movingPixelDirection);
+    this.internalMoveRequested(this.movingPixelsDirection);
   }
 
   checkForOverlapWithHero() {
@@ -52,7 +52,7 @@ export class GroundEnemyPlacement extends BodyPlacement {
     //Start the move
     this.ticksUntilNextMove = this.tickBetweenMovesInterval;
     this.movingPixelsRemaining = 16;
-    this.movingPixelDirection = direction;
+    this.movingPixelsDirection = direction;
     this.updateFacingDirection();
     this.updateWalkFrame();
   }
@@ -62,17 +62,17 @@ export class GroundEnemyPlacement extends BodyPlacement {
   }
 
   switchDirection() {
-    const currentDir = this.movingPixelDirection;
+    const currentDir = this.movingPixelsDirection;
  
      // Horizontal change
      if (currentDir === DIRECTION_LEFT || currentDir === DIRECTION_RIGHT) {
-       this.movingPixelDirection =
+       this.movingPixelsDirection =
          currentDir === DIRECTION_LEFT ? DIRECTION_RIGHT : DIRECTION_LEFT;
        return;
      }
      // Vertical change
 
-    this.movingPixelDirection =
+    this.movingPixelsDirection =
             currentDir === DIRECTION_UP ? DIRECTION_DOWN : DIRECTION_UP;
   }
 
