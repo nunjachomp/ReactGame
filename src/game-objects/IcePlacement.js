@@ -101,9 +101,9 @@ import { Placement } from "./Placement";
  
      const possibleRedirects = iceTileCornerRedirection[this.corner];
      if (possibleRedirects) {
-       return possibleRedirects[body.movingPixelDirection];
+       return possibleRedirects[body.movingPixelsDirection];
      }
-     return body.movingPixelDirection;
+     return body.movingPixelsDirection;
    }
  
    changesHeroSkinOnCollide() {
