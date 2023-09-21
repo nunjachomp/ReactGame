@@ -4,6 +4,9 @@ import { GameLoop } from "./GameLoop";
 import { placementFactory } from "./PlacementFactory";
 import LevelsMap from "../levels/LevelsMap";
 import { Inventory } from "./Inventory";
+import { LevelAnimatedFrames } from "./LevelAnimatedFrames";
+import { Camera } from "./Camera";
+import { Clock } from "./Clock";
 
 export class LevelState {
   constructor(levelId, onEmit) {
@@ -29,10 +32,21 @@ export class LevelState {
     //Create fresh inventory
     this.inventory = new Inventory();
 
+      // Create a frame animation manager
+      this.animatedFrames = new LevelAnimatedFrames();
+
     // Cache a reference to the hero
     this.heroRef = this.placements.find((p) => p.type === PLACEMENT_TYPE_HERO);
+
+       // Create a camera
+       this.camera = new Camera(this);
+
+        // Create a clock
+     this.clock = new Clock(20, this);
+
     this.startGameLoop();
   }
+  
 
   startGameLoop() {
     this.gameLoop?.stop();
@@ -60,6 +74,15 @@ export class LevelState {
       placement.tick();
     });
 
+     // Work on animation frames
+     this.animatedFrames.tick();
+
+        // Update the camera
+        this.camera.tick();
+
+         // Update the clock
+     this.clock.tick();
+
     //Emit any changes to React
     this.onEmit(this.getState());
   }
@@ -71,6 +94,21 @@ export class LevelState {
       x >= this.tilesWidth + 1 ||
       y >= this.tilesHeight + 1
     );
+  }
+
+  switchAllDoors() {
+    this.placements.forEach((placement) => {
+      if (placement.toggleIsRaised) {
+        placement.toggleIsRaised();
+      }
+    });
+  }
+
+  stealInventory() {
+    this.placements.forEach((p) => {
+      p.resetHasBeenCollected();
+    });
+    this.inventory.clear();
   }
 
   setDeathOutcome(causeOfDeath) {
@@ -92,6 +130,13 @@ export class LevelState {
       placements: this.placements,
       deathOutcome: this.deathOutcome,
       isCompleted: this.isCompleted,
+      cameraTransformX: this.camera.transformX,
+      cameraTransformY: this.camera.transformY,
+      secondsRemaining: this.clock.secondsRemaining,
+      inventory: this.inventory,
+      restart: () => {
+        this.start();
+      },
     };
   }
 
