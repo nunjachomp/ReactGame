@@ -2,14 +2,14 @@ import TutorialLevel from "./TutorialLevel";
 import ExplorationLevel from "./ExplorationLevel";
 import IceLevel from "./IceLevel";
 import LoveLevel from "./LoveLevel";
-import DemoLevel5 from "./DemoLevel5";
+import CiabattaBossBattle from "./CiabattaBossBattle";
 
 const Levels = {
   TutorialLevel: TutorialLevel,
   ExplorationLevel: ExplorationLevel,
   IceLevel: IceLevel,
   LoveLevel: LoveLevel,
-  DemoLevel5: DemoLevel5,
+  CiabattaBossBattle: CiabattaBossBattle,
 };
 
 export default Levels;
