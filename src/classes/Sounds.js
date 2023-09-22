@@ -13,6 +13,7 @@ export const SFX = {
   CIABATTAHIT: "CIABATTAHIT",
   TESTMUSIC: "TESTMUSIC",
   LOSE: "LOSE",
+  ENDGAME: "ENDGAME",
 };
 
 const SFX_FILES = {
@@ -28,6 +29,7 @@ const SFX_FILES = {
   [SFX.CIABATTAHIT]: "sfx/ciabattahit.wav",
   [SFX.LOSE]: "sfx/lose.wav",
   [SFX.TESTMUSIC]: "sfx/testmusic.wav",
+  [SFX.ENDGAME]: "sfx/endgame.wav",
 };
 
 export class Sounds {

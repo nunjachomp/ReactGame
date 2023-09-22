@@ -1,7 +1,7 @@
 import { GroundEnemyPlacement } from "./GroundEnemyPlacement";
 import CiabattaBody from "../components/object-graphics/CiabattaBody";
 import { TILES } from "../helpers/tiles";
-import { CELL_SIZE, PLACEMENT_TYPE_ROAMING_ENEMY } from "../helpers/consts";
+import { CELL_SIZE, LEVEL_THEMES, PLACEMENT_TYPE_ROAMING_ENEMY } from "../helpers/consts";
 import soundsManager, { SFX } from "../classes/Sounds";
 
 const ATTACKS = {
@@ -19,8 +19,18 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
     this.turnsAroundAtWater = true;
     this.interactsWithGround = true;
 
-    this.normalMovesRemaining = 4;
-    this.hp = 3;
+    if (this.level.theme === LEVEL_THEMES.GRAY) {
+      this.normalMovesRemaining = 1;
+    } else {
+      this.normalMovesRemaining = 4;
+    }
+
+    if (this.level.theme === LEVEL_THEMES.GRAY) {
+    this.hp = 10;
+    } else {
+      this.hp = 3;
+    }
+
     this.painFramesRemaining = 0;
 
     this.currentAttack = null;
@@ -198,6 +208,10 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
       // Start counting death frames
       this.deathFramesUntilDisappear = DEATH_FRAMES_LENGTH;
       soundsManager.playSfx(SFX.CIABATTADIE);
+      if (this.level.theme === LEVEL_THEMES.GRAY) {
+        this.level.completeLevel()
+        soundsManager.playSfx(SFX.ENDGAME);
+      }
     }
   }
 
