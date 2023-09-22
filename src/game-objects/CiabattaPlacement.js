@@ -200,6 +200,7 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
       soundsManager.playSfx(SFX.CIABATTADIE);
       if (this.level.theme === LEVEL_THEMES.GRAY) {
         this.level.completeLevel()
+        soundsManager.playSfx(SFX.ENDGAME);
       }
     }
   }
