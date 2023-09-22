@@ -19,8 +19,18 @@ export class CiabattaPlacement extends GroundEnemyPlacement {
     this.turnsAroundAtWater = true;
     this.interactsWithGround = true;
 
-    this.normalMovesRemaining = 1;
+    if (this.level.theme === LEVEL_THEMES.GRAY) {
+      this.normalMovesRemaining = 1;
+    } else {
+      this.normalMovesRemaining = 4;
+    }
+
+    if (this.level.theme === LEVEL_THEMES.GRAY) {
     this.hp = 10;
+    } else {
+      this.hp = 3;
+    }
+
     this.painFramesRemaining = 0;
 
     this.currentAttack = null;
