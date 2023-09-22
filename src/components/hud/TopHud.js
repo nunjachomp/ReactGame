@@ -13,7 +13,7 @@ export default function TopHud({ level }) {
         <InventoryList level={level} />
       </div>
       <div className={styles.topHudRight}>
-      <EditorDropdown level={level} />
+      {/* <EditorDropdown level={level} /> */}
       </div>
     </div>
   );

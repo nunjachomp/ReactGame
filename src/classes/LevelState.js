@@ -43,7 +43,7 @@ export class LevelState {
        this.camera = new Camera(this);
 
         // Create a clock
-     this.clock = new Clock(1000, this);
+     this.clock = new Clock(300, this);
 
     this.startGameLoop();
   }
