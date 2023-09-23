@@ -4,8 +4,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const mongoose = require("mongoose")
 const { auth } = require('express-oauth2-jwt-bearer');
-
+const Player = require('./Schemas/PlayerSchema')
 
 
 
@@ -16,6 +17,18 @@ const jwtCheck = auth({
 });
 
 
+
+
+async function connectDB(){
+    try{
+        await mongoose.connect(process.env.mongoDB_URI)
+        console.log('connceted to Safepass');
+    }catch(err){
+        console.log('connection error', err);
+    }
+ 
+}
+connectDB()
 
 
 const protectedRoute = require('./Routes/Protected');
