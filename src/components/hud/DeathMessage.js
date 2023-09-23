@@ -12,6 +12,7 @@ import {
   PLACEMENT_TYPE_CIABATTA,
 } from "../../helpers/consts";
 import { useKeyPress } from "../../hooks/useKeyPress";
+import soundsManager, { SFX } from "./../../classes/Sounds";
 
 const showDeathType = (deathType) => {
   switch (deathType) {
@@ -69,6 +70,7 @@ const showDeathType = (deathType) => {
 export default function DeathMessage({ level }) {
   const handleRestartLevel = () => {
     level.restart();
+    level.music = soundsManager.stopSfx(SFX.LOSE) 
   };
 
   useKeyPress("Enter", () => {

@@ -58,10 +58,11 @@ export class Sounds {
       const loop3 = key === SFX.OPTIMISTIC; 
       const loop4 = key === SFX.DETERMINED; 
       const loop5 = key === SFX.BOSS; 
+      const loop6 = key === SFX.LOSE; 
 
       this.howls[key] = new Howl({
         src: [file],
-        loop: loop1 || loop2 || loop3 || loop4 || loop5 // Enable looping for the music file
+        loop: loop1 || loop2 || loop3 || loop4 || loop5 || loop6 // Enable looping for the music file
       });
     });
   }

@@ -180,6 +180,8 @@ export class LevelState {
       } else if (this.theme === LEVEL_THEMES.GRAY) {
       this.music = soundsManager.stopSfx(SFX.BOSS)  
       }
+
+      this.music = soundsManager.playSfx(SFX.LOSE) 
   }
 
   completeLevel() {
