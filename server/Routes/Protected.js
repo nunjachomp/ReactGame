@@ -1,13 +1,6 @@
 const express = require('express');
+const PlayerController = require('../Controllers/PlayerController');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    try{
-        res.send('hello from protected');
-    }catch(err){
-        console.log(err);
-    }
-    
-});
-
+router.get('/', PlayerController.logEntry)
 module.exports = router;
