@@ -36,11 +36,21 @@ export class LevelState {
     this.tilesWidth = levelData.tilesWidth;
     this.tilesHeight = levelData.tilesHeight;
     
-    if (this.theme === LEVEL_THEMES.GREEN) {
-    this.music = soundsManager.playSfx(SFX.LEVEL)
-    } else if (this.theme === LEVEL_THEMES.GRAY) {
-    this.music = null  
-    }
+
+
+      if (this.theme === LEVEL_THEMES.YELLOW) {
+      this.music = soundsManager.playSfx(SFX.BEGINNINGS)
+      } else if (this.theme === LEVEL_THEMES.BLUE) {
+      this.music = soundsManager.playSfx(SFX.ICE)
+      } else if (this.theme === LEVEL_THEMES.PINK) {
+      this.music = soundsManager.playSfx(SFX.OPTIMISTIC)  
+      } else if (this.theme === LEVEL_THEMES.GREEN) {
+      this.music = soundsManager.playSfx(SFX.DETERMINED)  
+      } else if (this.theme === LEVEL_THEMES.GRAY) {
+      this.music = soundsManager.playSfx(SFX.BOSS)  
+      }
+
+
 
     this.placements = levelData.placements.map((config) => {
       return placementFactory.createPlacement(config, this); //"this" is refering to current level
@@ -159,17 +169,34 @@ export class LevelState {
     this.gameLoop.stop();
     // soundsManager.stopSfx(SFX.LEVEL);
 
-    if (this.theme === LEVEL_THEMES.GREEN) {
-      soundsManager.stopSfx(SFX.LEVEL);
+    if (this.theme === LEVEL_THEMES.YELLOW) {
+      this.music = soundsManager.stopSfx(SFX.BEGINNINGS)
+      } else if (this.theme === LEVEL_THEMES.BLUE) {
+      this.music = soundsManager.stopSfx(SFX.ICE)
+      } else if (this.theme === LEVEL_THEMES.PINK) {
+      this.music = soundsManager.stopSfx(SFX.OPTIMISTIC)  
+      } else if (this.theme === LEVEL_THEMES.GREEN) {
+      this.music = soundsManager.stopSfx(SFX.DETERMINED)  
       } else if (this.theme === LEVEL_THEMES.GRAY) {
-       soundsManager.stopSfx(SFX.LEVEL); 
+      this.music = soundsManager.stopSfx(SFX.BOSS)  
       }
   }
 
   completeLevel() {
     this.isCompleted = true;
     this.gameLoop.stop();
-    soundsManager.stopSfx(SFX.LEVEL);
+
+    if (this.theme === LEVEL_THEMES.YELLOW) {
+      this.music = soundsManager.stopSfx(SFX.BEGINNINGS)
+      } else if (this.theme === LEVEL_THEMES.BLUE) {
+      this.music = soundsManager.stopSfx(SFX.ICE)
+      } else if (this.theme === LEVEL_THEMES.PINK) {
+      this.music = soundsManager.stopSfx(SFX.OPTIMISTIC)  
+      } else if (this.theme === LEVEL_THEMES.GREEN) {
+      this.music = soundsManager.stopSfx(SFX.DETERMINED)  
+      } else if (this.theme === LEVEL_THEMES.GRAY) {
+      this.music = soundsManager.stopSfx(SFX.BOSS)  
+      }
   }
 
 

@@ -26,7 +26,7 @@ import {
   const specialTiles = [{ x: 4, y: 2, type: PLACEMENT_TYPE_CONVEYOR, direction: "RIGHT" },{ x: 4, y: 1, type: PLACEMENT_TYPE_CONVEYOR, direction: "LEFT" }, { x: 1, y: 9, type: PLACEMENT_TYPE_ICE, corner: "BOTTOM_LEFT" }]
 
   const level = {
-    theme: LEVEL_THEMES.GREEN,
+    theme: LEVEL_THEMES.YELLOW,
     tilesWidth: 9,
     tilesHeight: 9,
     placements: [{"type":"HERO","x":4,"y":5},{"type":"CIABATTA","x":2,"y":2},{"type":"FIRE","x":5,"y":1},{"type":"FIRE","x":6,"y":1},{"type":"FIRE","x":7,"y":1},{"type":"WALL","x":1,"y":1},{"type":"WALL","x":9,"y":1},{"type":"FIRE","x":7,"y":2},{"type":"FIRE","x":6,"y":2},{"type":"FIRE","x":5,"y":2},{"type":"WALL","x":9,"y":2},{"type":"WALL","x":9,"y":3},{"type":"WALL","x":8,"y":3},{"type":"WALL","x":7,"y":3},{"type":"WALL","x":6,"y":3},{"type":"WALL","x":5,"y":3},{"type":"WALL","x":1,"y":2},{"type":"WALL","x":1,"y":3},{"type":"WALL","x":3,"y":3},{"type":"WALL","x":4,"y":3},{"type":"FIRE","x":8,"y":1},{"type":"FIRE","x":8,"y":2},{"type":"GOAL","x":9,"y":9},{"type":"ICE","x":1,"y":8},{"type":"ICE","x":2,"y":9},{"type":"ICE","x":3,"y":9},{"type":"ICE","x":1,"y":7},{"type":"LOCK","x":2,"y":3},{"type":"KEY","x":9,"y":5},{"type":"WATER","x":9,"y":4},{"type":"WATER","x":8,"y":4},{"type":"WATER","x":8,"y":5},{"type":"WATER","x":8,"y":6},{"type":"WATER","x":9,"y":6},{"type":"ICE_PICKUP","x":4,"y":9},{"type":"WATER_PICKUP","x":6,"y":4},{"type":"FLOUR","x":3,"y":1},{"type":"FIRE_PICKUP","x":2,"y":1},{"type":"WALL","x":3,"y":8},{"type":"WALL","x":2,"y":8},{"type":"WALL","x":2,"y":7},{"type":"WALL","x":4,"y":8},{"type":"WALL","x":5,"y":8},{"type":"WALL","x":5,"y":9}, ...specialTiles ]
