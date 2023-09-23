@@ -6,9 +6,9 @@ import CiabattaBossBattle from "./CiabattaBossBattle";
 
 const Levels = {
   TutorialLevel: TutorialLevel,
-  ExplorationLevel: ExplorationLevel,
   IceLevel: IceLevel,
   LoveLevel: LoveLevel,
+  ExplorationLevel: ExplorationLevel,
   CiabattaBossBattle: CiabattaBossBattle,
 };
 
