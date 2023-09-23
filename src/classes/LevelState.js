@@ -15,7 +15,9 @@ export class LevelState {
     this.directionControls = new DirectionControls();
     this.editModePlacementType = PLACEMENT_TYPE_WALL;
 
-    //Start the level!
+    this.totalScore = 0;
+
+    // Start the level!
     this.start();
   }
 
@@ -23,31 +25,34 @@ export class LevelState {
     this.isCompleted = false;
     this.deathOutcome = null;
     const levelData = LevelsMap[this.id];
- 
+
     this.theme = levelData.theme;
     this.tilesWidth = levelData.tilesWidth;
     this.tilesHeight = levelData.tilesHeight;
     this.placements = levelData.placements.map((config) => {
-      return placementFactory.createPlacement(config, this); //"this" is refering to current level
+      return placementFactory.createPlacement(config, this);
     });
-    //Create fresh inventory
+
+    // Create fresh inventory
     this.inventory = new Inventory();
 
-      // Create a frame animation manager
-      this.animatedFrames = new LevelAnimatedFrames();
+    // Create a frame animation manager
+    this.animatedFrames = new LevelAnimatedFrames();
 
     // Cache a reference to the hero
     this.heroRef = this.placements.find((p) => p.type === PLACEMENT_TYPE_HERO);
 
-       // Create a camera
-       this.camera = new Camera(this);
+    // Create a camera
+    this.camera = new Camera(this);
 
-        // Create a clock
-     this.clock = new Clock(1000, this);
+    // Create a clock
+    this.clock = new Clock(1000, this);
+
+    // Initialize levelScore to zero at the start of each level
+    this.levelScore = 0;
 
     this.startGameLoop();
   }
-  
 
   startGameLoop() {
     this.gameLoop?.stop();
@@ -55,6 +60,41 @@ export class LevelState {
       this.tick();
     });
   }
+
+  calculateScore(remainingTime, itemPickups, levelCompleted) {
+    const timeMultiplier = remainingTime * 10;
+    const itemPoints = itemPickups * 200;
+    const levelCompletedPoints = levelCompleted ? 1000 : 0;
+
+    // Calculate the total score for the current level
+    const totalScore = timeMultiplier + itemPoints + levelCompletedPoints;
+
+    return totalScore;
+  }
+
+  handleItemCollection(remainingTime) {
+    const itemPickups = this.inventory.getItemsCollected();
+    const levelCompleted = this.isCompleted;
+    const newScore = this.calculateScore(remainingTime, itemPickups, levelCompleted);
+  
+    // Update the current level's score
+    this.levelScore = newScore;
+  
+    if (this.isCompleted) {
+      // Add the current level's score to the global total score
+      this.totalScore += this.levelScore;
+      console.log("Total Score:", this.totalScore); // Use this.totalScore
+    }
+  
+    console.log("Remaining Time:", remainingTime);
+    console.log("Item Pickups:", itemPickups);
+    console.log("Level Completed:", levelCompleted);
+    console.log("New Score:", newScore);
+  
+    // Emit the updated state
+    this.onEmit(this.getState());
+  }
+  
 
   addPlacement(config) {
     this.placements.push(placementFactory.createPlacement(config, this));
@@ -111,6 +151,7 @@ export class LevelState {
          // Update the clock
      this.clock.tick();
 
+     const remainingTime = this.clock.secondsRemaining;
     //Emit any changes to React
     this.onEmit(this.getState());
   }
@@ -146,6 +187,16 @@ export class LevelState {
 
   completeLevel() {
     this.isCompleted = true;
+    const remainingTime = this.clock.secondsRemaining;
+
+    // Calculate the level score
+    const levelScore = this.calculateScore(remainingTime, this.inventory.getItemsCollected(), true);
+
+    // Add the level score to the total score
+    this.totalScore += levelScore;
+
+    // Emit the updated state
+    this.onEmit(this.getState());
     this.gameLoop.stop();
   }
 
@@ -162,16 +213,18 @@ export class LevelState {
       cameraTransformY: this.camera.transformY,
       secondsRemaining: this.clock.secondsRemaining,
       inventory: this.inventory,
+      levelScore: this.levelScore,
+      totalScore: this.totalScore, 
       restart: () => {
         this.start();
       },
-       // Edit Mode API
-       enableEditing: true,
-       editModePlacementType: this.editModePlacementType,
-       addPlacement: this.addPlacement.bind(this),
-       deletePlacement: this.deletePlacement.bind(this),
-       setEditModePlacementType: this.setEditModePlacementType.bind(this),
-       copyPlacementsToClipboard: this.copyPlacementsToClipboard.bind(this),
+      // Edit Mode API
+      enableEditing: true,
+      editModePlacementType: this.editModePlacementType,
+      addPlacement: this.addPlacement.bind(this),
+      deletePlacement: this.deletePlacement.bind(this),
+      setEditModePlacementType: this.setEditModePlacementType.bind(this),
+      copyPlacementsToClipboard: this.copyPlacementsToClipboard.bind(this),
     };
   }
 

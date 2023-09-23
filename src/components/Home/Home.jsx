@@ -11,6 +11,8 @@ function Home() {
     const [spriteSheetImage, setSpriteSheetImage] =
     useRecoilState(spriteSheetImageAtom);
     const { loginWithPopup, isAuthenticated,loginWithRedirect, getAccessTokenSilently } = useAuth0();
+    const [totalScore, setTotalScore] = useState(0);
+
 
     async function callProtectedAPI (){
       try{
@@ -41,9 +43,15 @@ function Home() {
     return null;
   }
 
+  const updateTotalScore = (score) => {
+    setTotalScore((prevTotalScore) => prevTotalScore + score);
+  };
+
+
   return ( 
     <>
-  <RenderLevel />
+          <RenderLevel totalScore={totalScore} updateTotalScore={updateTotalScore} />
+
   </>
   );
 };

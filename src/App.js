@@ -19,8 +19,8 @@ const App = () => {
     }
   }, [isAuthenticated]);
 
-  return <>
-  {isAuthenticated ? <Home /> :<Auth/> }
+  return <><Home />
+  {/* {isAuthenticated ? <Home /> :<Auth/> } */}
   </>;
 };
 

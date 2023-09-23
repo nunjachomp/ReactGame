@@ -24,14 +24,24 @@ export class Collision {
   }
   withPlacementAddsToInventory() {
     if (this.forBody.canCollectItems) {
-      return this.placementsAtPosition.find((p) => {
-        return (
-          !p.hasBeenCollected && p.addsItemToInventoryOnCollide(this.forBody)
-        );
+      const itemPlacement = this.placementsAtPosition.find((p) => {
+        const canBeCollected = !p.hasBeenCollected && p.addsItemToInventoryOnCollide(this.forBody);
+        if (canBeCollected) {
+          console.log(`Item ${p.type} can be collected`);
+        }
+        return canBeCollected;
       });
+  
+      if (itemPlacement) {
+        // Call handleItemCollection from LevelState to update the score
+        this.forBody.levelState.handleItemCollection(this.forBody.levelState.clock.secondsRemaining);
+        console.log(`Item ${itemPlacement.type} was collected`);
+        return itemPlacement;
+      }    
     }
     return null;
   }
+  
   withCompletesLevel() {
     if (this.forBody.canCompleteLevel) {
       return this.placementsAtPosition.find((p) => {
