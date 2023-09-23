@@ -5,7 +5,7 @@ import InventoryList from "./InventoryList";
 import EditorDropdown from "./EditorDropdown";
 import PixelNumber from "../object-graphics/PixelNumber";
 
-export default function TopHud({ level, totalScore, currentLevelScore }) {
+export default function TopHud({ level, totalScore, currentLevelScore, togglePause }) {
   return (
     <div className={styles.topHud}>
       <div className={styles.topHudLeft}>
@@ -22,6 +22,7 @@ export default function TopHud({ level, totalScore, currentLevelScore }) {
         </div>
       </div>
       <div className={styles.topHudRight}>
+      <button onClick={togglePause}>Pause</button>
       {/* <EditorDropdown level={level} /> */}
       </div>
     </div>

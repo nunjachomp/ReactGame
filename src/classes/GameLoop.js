@@ -35,4 +35,7 @@ export class GameLoop {
     this.hasStopped = true;
     cancelAnimationFrame(this.rafCallback);
   }
+  togglePause() {
+    this.isPaused = !this.isPaused;
+  }
 }
