@@ -52,10 +52,18 @@ export class Sounds {
   playSfx(key) {
     // Reference our sound in memory
     const howl = this.howls[key];
+    this.howls[key] = howl; // Store the reference
 
     // Play it with current volume setting
     howl.volume(this.sfxVolume);
     howl.play();
+  }
+
+  stopSfx(key) {
+    const howl = this.howls[key];
+    if (howl) {
+      howl.stop();
+    }
   }
 }
 

@@ -36,7 +36,7 @@ export class LevelState {
     this.tilesWidth = levelData.tilesWidth;
     this.tilesHeight = levelData.tilesHeight;
     
-    if (this.theme === LEVEL_THEMES.GREEN) { //NEED ANOTHER CONDITION FOR GAME LOOP
+    if (this.theme === LEVEL_THEMES.GREEN) {
     this.music = soundsManager.playSfx(SFX.LEVEL)
     } else if (this.theme === LEVEL_THEMES.GRAY) {
     this.music = null  
@@ -157,11 +157,19 @@ export class LevelState {
   setDeathOutcome(causeOfDeath) {
     this.deathOutcome = causeOfDeath;
     this.gameLoop.stop();
+    // soundsManager.stopSfx(SFX.LEVEL);
+
+    if (this.theme === LEVEL_THEMES.GREEN) {
+      soundsManager.stopSfx(SFX.LEVEL);
+      } else if (this.theme === LEVEL_THEMES.GRAY) {
+       soundsManager.stopSfx(SFX.LEVEL); 
+      }
   }
 
   completeLevel() {
     this.isCompleted = true;
     this.gameLoop.stop();
+    soundsManager.stopSfx(SFX.LEVEL);
   }
 
 
