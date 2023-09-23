@@ -1,3 +1,4 @@
+
 import { SPRITE_SHEET_SRC } from "../helpers/consts";
 import React, { useContext, useEffect } from "react";
 import RenderLevel from "./../components/level-layout/RenderLevel";
@@ -11,7 +12,7 @@ import PlayerContext from "../Context/PlayerContext";
 const Home = () => {
   const [spriteSheetImage, setSpriteSheetImage] =
     useRecoilState(spriteSheetImageAtom);
-  const {callProtectedAPI} = useContext(PlayerContext)
+  const {callProtectedAPI, isAuthenticated} = useContext(PlayerContext)
 
 
   useEffect(() => {
@@ -20,8 +21,11 @@ const Home = () => {
     image.onload = () => {
       setSpriteSheetImage(image);
     };
-    callProtectedAPI()
-  }, [setSpriteSheetImage]);
+    if (isAuthenticated) {
+      console.log('Calling callProtectedAPI');
+      callProtectedAPI();
+    }
+  }, [setSpriteSheetImage, isAuthenticated,callProtectedAPI]);
 
   if (!spriteSheetImage) {
     return null;

@@ -7,7 +7,8 @@ class PlayerController{
 
     static logEntry  = async (req, res) => {
         try{
-        const session = await PlayerModel.logPlayerModel(req.body)
+        const sessionID = await PlayerModel.logPlayerModel(req.body)
+        res.send(sessionID)
         }catch(err){
             console.log(err.message);
         }

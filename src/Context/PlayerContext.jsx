@@ -7,7 +7,7 @@ const PlayerContext = createContext();
 
 const PlayerContextProvider = ({ children }) => {
     const [islogin , setlogin] =useState('')
-    const { user , getAccessTokenSilently } = useAuth0();
+    const { user , getAccessTokenSilently,isAuthenticated } = useAuth0();
 
     async function callProtectedAPI (){
       try{
@@ -23,7 +23,7 @@ const PlayerContextProvider = ({ children }) => {
 
 
   return (
-    <PlayerContext.Provider value={{islogin,callProtectedAPI }}>
+    <PlayerContext.Provider value={{callProtectedAPI,isAuthenticated}}>
       {children}
     </PlayerContext.Provider>
   );

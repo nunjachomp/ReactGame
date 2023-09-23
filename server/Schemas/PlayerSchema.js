@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const playerSchema = new mongoose.Schema({
-  email: { type: String, unique: true, required: true },
+  email: { type: String, required: true },
   password: { type: String },
   username: { type: String, required: true },
   fullName: { type: String, required: true },
@@ -8,7 +8,8 @@ const playerSchema = new mongoose.Schema({
   locale : String,
   level: Number,
   highscore: Number,
-  EntryDate: { type: Date, default: () => Date.now }
+  EntryDate: { type: Date, default: Date.now },
+  CreatedAt: {type: Date, immutable:true , default:Date.now }
 });
 
 

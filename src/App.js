@@ -1,27 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Home from "./Pages/Home";
 import Auth from "./Pages/Auth";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
-  const { isAuthenticated} = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    console.log("isAuthenticated:", isAuthenticated);
-    if (isAuthenticated) {
-      return;
-    }
-    try {
-     console.log("Redirecting to login...")
-     console.log(isAuthenticated);
-    } catch (err) {
-      console.log("Auth0 Error:", err);
-    }
-  }, [isAuthenticated]);
-
-  return <>
-  {isAuthenticated ? <Home /> :<Auth/> }
-  </>;
+  return (
+    <Routes>
+    <Route path="/home" element={<Home />} />
+    <Route path="/auth" element={<Auth />} />
+    <Route path="*" element={isAuthenticated ? <Home /> : <Auth />} />
+  </Routes>
+  );
 };
 
 export default App;

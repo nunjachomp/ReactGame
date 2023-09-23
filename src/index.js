@@ -9,7 +9,7 @@ import { PlayerContextProvider } from './Context/PlayerContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
     <Auth0Provider
       domain='gameitc.eu.auth0.com'
       clientId='J6O1eJSfkckaZAXJGt4mqQtSLTSMKwQf'
@@ -23,5 +23,5 @@ root.render(
           </PlayerContextProvider>
         </BrowserRouter>
     </Auth0Provider>
-  </React.StrictMode>
+
 );
