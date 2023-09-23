@@ -1,4 +1,4 @@
-import { PLACEMENT_TYPE_HERO, PLACEMENT_TYPE_WALL } from "../helpers/consts";
+import { PLACEMENT_TYPE_HERO, PLACEMENT_TYPE_WALL, LEVEL_THEMES } from "../helpers/consts";
 import { DirectionControls } from "./DirectionControls";
 import { GameLoop } from "./GameLoop";
 import { placementFactory } from "./PlacementFactory";
@@ -7,6 +7,9 @@ import { Inventory } from "./Inventory";
 import { LevelAnimatedFrames } from "./LevelAnimatedFrames";
 import { Camera } from "./Camera";
 import { Clock } from "./Clock";
+import soundsManager, { SFX } from "./Sounds";
+import level from "../levels/TutorialLevel";
+
 
 export class LevelState {
   constructor(levelId, onEmit) {
@@ -14,6 +17,11 @@ export class LevelState {
     this.onEmit = onEmit;
     this.directionControls = new DirectionControls();
     this.editModePlacementType = PLACEMENT_TYPE_WALL;
+   
+    // if (this.level.theme === LEVEL_THEMES.GREEN) {
+    // this.music = soundsManager.playSfx(SFX.TESTMUSIC)
+    // }
+
 
     //Start the level!
     this.start();
@@ -27,6 +35,13 @@ export class LevelState {
     this.theme = levelData.theme;
     this.tilesWidth = levelData.tilesWidth;
     this.tilesHeight = levelData.tilesHeight;
+    
+    if (this.theme === LEVEL_THEMES.GREEN) { //NEED ANOTHER CONDITION FOR GAME LOOP
+    this.music = soundsManager.playSfx(SFX.LEVEL)
+    } else if (this.theme === LEVEL_THEMES.GRAY) {
+    this.music = null  
+    }
+
     this.placements = levelData.placements.map((config) => {
       return placementFactory.createPlacement(config, this); //"this" is refering to current level
     });

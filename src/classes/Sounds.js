@@ -14,6 +14,7 @@ export const SFX = {
   TESTMUSIC: "TESTMUSIC",
   LOSE: "LOSE",
   ENDGAME: "ENDGAME",
+  LEVEL: "LEVEL"
 };
 
 const SFX_FILES = {
@@ -30,6 +31,7 @@ const SFX_FILES = {
   [SFX.LOSE]: "sfx/lose.wav",
   [SFX.TESTMUSIC]: "sfx/testmusic.wav",
   [SFX.ENDGAME]: "sfx/endgame.wav",
+  [SFX.LEVEL]: "sfx/level.mp3",
 };
 
 export class Sounds {

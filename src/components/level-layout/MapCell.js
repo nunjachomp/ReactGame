@@ -9,15 +9,15 @@ export default function MapCell({ level, x, y, frameCoord }) {
         left: x * CELL_SIZE,
         top: y * CELL_SIZE,
       }}
-      onClick={() => {
-        if (level.enableEditing) {
-          level.addPlacement({
-            x: x,
-            y: y,
-            type: level.editModePlacementType,
-          });
-        }
-      }}
+      // onClick={() => {
+      //   if (level.enableEditing) {
+      //     level.addPlacement({
+      //       x: x,
+      //       y: y,
+      //       type: level.editModePlacementType,
+      //     });
+      //   }
+      // }}
     >
       <Sprite frameCoord={frameCoord} />
     </div>
