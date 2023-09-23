@@ -3,7 +3,6 @@ export const Z_INDEX_LAYER_SIZE = 10;
 export const SPRITE_SHEET_SRC = "./ciabattas-revenge-sprites.png";
 
 export const PLACEMENT_TYPE_HERO = "HERO";
-//Space to navigate to, to finish level
 export const PLACEMENT_TYPE_GOAL = "GOAL";
 export const PLACEMENT_TYPE_WALL = "WALL";
 export const PLACEMENT_TYPE_FLOUR = "FLOUR";

@@ -1,18 +1,33 @@
 // import { SPRITE_SHEET_SRC } from "../../helpers/consts";
-// import React, { useContext, useEffect } from "react";
+// import React, { useEffect } from "react";
 // import RenderLevel from "../level-layout/RenderLevel";
-
+// import { useAuth0 } from "@auth0/auth0-react";
 // import { useRecoilState } from "recoil";
 // import { spriteSheetImageAtom } from '../../atoms/spriteSheetImageAtom'
-// import PlayerContext from "../../Context/PlayerContext";
-
+// import axios from "axios";
 
 
 // function Home() {
 //     const [spriteSheetImage, setSpriteSheetImage] =
 //     useRecoilState(spriteSheetImageAtom);
-//     const {callProtectedAPI} = useContext(PlayerContext)
-   
+//     const { loginWithPopup, isAuthenticated,loginWithRedirect, getAccessTokenSilently } = useAuth0();
+//     const [totalScore, setTotalScore] = useState(0);
+
+
+//     async function callProtectedAPI (){
+//       try{
+//         const token = await getAccessTokenSilently()
+//         console.log(token);
+       
+//         // const response = await axios.get('http://localhost:8080/protectedAPI',{headers: {Authorization:`Bearer ${token}`}})
+        
+//         // console.log(response.data);
+//       }
+//       catch(err){
+//         console.log(err);
+//       }
+      
+//     }
 
 
 //   useEffect(() => {
@@ -21,15 +36,22 @@
 //     image.onload = () => {
 //       setSpriteSheetImage(image);
 //     };
+//     callProtectedAPI()
 //   }, [setSpriteSheetImage]);
 
 //   if (!spriteSheetImage) {
 //     return null;
 //   }
 
+//   const updateTotalScore = (score) => {
+//     setTotalScore((prevTotalScore) => prevTotalScore + score);
+//   };
+
+
 //   return ( 
 //     <>
-//   <RenderLevel />
+//           <RenderLevel totalScore={totalScore} updateTotalScore={updateTotalScore} />
+
 //   </>
 //   );
 // };

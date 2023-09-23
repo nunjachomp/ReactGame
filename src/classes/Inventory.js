@@ -15,7 +15,15 @@ export class Inventory {
     console.log(this.inventoryMap);
   }
 
+
   clear() {
     this.inventoryMap = new Map();
   }
+
+  getItemsCollected() {
+    return this.inventoryMap.size;
+  }
+
 }
+
+
