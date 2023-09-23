@@ -12,10 +12,7 @@ const PlayerContextProvider = ({ children }) => {
     async function callProtectedAPI (){
       try{
         const token = await getAccessTokenSilently()
-        console.log('from context',token);
-       
-        const response = await axios.get('http://localhost:8080/protectedAPI',user)
-        
+        const response = await axios.post('http://localhost:8080/protectedAPI',user)
         console.log(response.data);
       }
       catch(err){

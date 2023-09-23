@@ -4,12 +4,9 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-const mongoose = require("mongoose")
 const { auth } = require('express-oauth2-jwt-bearer');
-const Player = require('./Schemas/PlayerSchema')
 
 
-mongoose.connect(process.env.MongoDB_URI)
 
 
 // Define the order of middleware

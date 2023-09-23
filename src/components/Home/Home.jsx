@@ -21,7 +21,6 @@ function Home() {
     image.onload = () => {
       setSpriteSheetImage(image);
     };
-    callProtectedAPI()
   }, [setSpriteSheetImage]);
 
   if (!spriteSheetImage) {
