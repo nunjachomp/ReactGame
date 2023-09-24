@@ -21,14 +21,24 @@
 }
 
 .outlinedText {
-    font-size: 5px;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-weight: 800;
-    -webkit-text-stroke: 0.25px;
-    -webkit-text-stroke-color: #fff;
+  font-size: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+  -webkit-text-stroke: 0.25px;
+  -webkit-text-stroke-color: #fff;
 }
 
 .topHudRight {
   display: flex;
   gap: 2px;
+}
+
+.pauseBtn {
+  background-color: transparent;
+  border: none;
+  font-weight: 800;
+  font-size: 36px;
+  color: #fff;
+  margin-right: 2rem;
+  transform: translateY(50%);
 }

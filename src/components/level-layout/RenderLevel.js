@@ -88,7 +88,7 @@ import PauseMenu from "../PauseMenu/PauseMenu";
         )}
         {level.deathOutcome && <DeathMessage level={level} />}
       </div>)}
-      <TopHud level={level} totalScore={totalScore} currentLevelScore={currentLevelScore} togglePause={togglePause}/>
+      <TopHud level={level} totalScore={totalScore} currentLevelScore={currentLevelScore} togglePause={togglePause} isPaused={isPaused}/>
     </div>
   );
 }
