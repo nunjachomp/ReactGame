@@ -36,13 +36,21 @@ import PauseMenu from "../PauseMenu/PauseMenu";
         setCurrentLevelScore(newState.levelScore);
       });
   
-      return () => {
-        // Destroy the levelState instance when the component unmounts
-        if (levelState.current) {
-          levelState.current.destroy();
+      const handleKeyPress = (e) => {
+        if (e.key === "Escape") {
+          togglePause();
         }
       };
+  
+      window.addEventListener("keydown", handleKeyPress);
+  
+      return () => {
+        levelState.destroy();
+  
+        window.removeEventListener("keydown", handleKeyPress);
+      };
     }, [currentLevelId]);
+  
   
     if (!level) {
       return null;
