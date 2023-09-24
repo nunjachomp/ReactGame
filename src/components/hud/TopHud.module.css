@@ -1,29 +1,44 @@
 .topHud {
-    position: absolute;
-    top: 4px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .topHudLeft {
-    transform: scale( var(--pixel-size) );
-    transform-origin: top left;
-    display: flex;
-    gap: 2px;
+  transform: scale(var(--pixel-size));
+  transform-origin: top left;
+  display: flex;
+  gap: 2px;
 }
 
 .topHudMiddle {
-    font-size: 6px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.outlinedText {
+  font-size: 5px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 800;
+  -webkit-text-stroke: 0.25px;
+  -webkit-text-stroke-color: #fff;
 }
 
 .topHudRight {
-    display: flex;
-    gap: 2px;
+  display: flex;
+  gap: 2px;
+}
+
+.pauseBtn {
+  background-color: transparent;
+  border: none;
+  font-weight: 800;
+  font-size: 36px;
+  color: #fff;
+  margin-right: 2rem;
+  transform: translateY(50%);
 }

@@ -23,6 +23,8 @@ export class LevelState {
     // }
 
 
+    this.isPaused = false;
+
     this.totalScore = 0;
 
     // Start the level!
@@ -77,6 +79,10 @@ export class LevelState {
     this.levelScore = 0;
 
     this.startGameLoop();
+  }
+
+  togglePause() {
+    this.isPaused = !this.isPaused;
   }
 
   startGameLoop() {
@@ -160,27 +166,30 @@ export class LevelState {
   }
 
   tick() {
-    if (this.directionControls.direction) {
-      this.heroRef.controllerMoveRequested(this.directionControls.direction);
+    if (!this.isPaused) {
+      if (this.directionControls.direction) {
+        this.heroRef.controllerMoveRequested(this.directionControls.direction);
+      }
+      this.placements.forEach((placement) => {
+        placement.tick();
+      });
+  
+      // Work on animation frames
+      this.animatedFrames.tick();
+  
+      // Update the camera
+      this.camera.tick();
+  
+      // Update the clock
+      this.clock.tick();
+  
+      const remainingTime = this.clock.secondsRemaining;
+  
+      // Emit any changes to React
+      this.onEmit(this.getState());
     }
-    this.placements.forEach((placement) => {
-      placement.tick();
-    });
-
-     // Work on animation frames
-     this.animatedFrames.tick();
-
-        // Update the camera
-        this.camera.tick();
-
-         // Update the clock
-     this.clock.tick();
-
-     const remainingTime = this.clock.secondsRemaining;
-    //Emit any changes to React
-    this.onEmit(this.getState());
   }
-
+  
   isPositionOutOfBounds(x, y) {
     return (
       x === 0 ||
