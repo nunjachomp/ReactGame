@@ -75,9 +75,12 @@ export class LevelState {
   
 
   startGameLoop() {
+    
     this.gameLoop?.stop();
+
     this.gameLoop = new GameLoop(() => {
       this.tick();
+      
     });
   }
 
@@ -223,7 +226,7 @@ export class LevelState {
        addPlacement: this.addPlacement.bind(this),
        deletePlacement: this.deletePlacement.bind(this),
        setEditModePlacementType: this.setEditModePlacementType.bind(this),
-       copyPlacementsToClipboard: this.copyPlacementsToClipboard.bind(this),
+       copyPlacementsToClipboard: this.copyPlacementsToClipboard.bind(this),  
     };
   }
 
@@ -231,5 +234,11 @@ export class LevelState {
     // Tear down the level.
     this.gameLoop.stop();
     this.directionControls.unbind();
+    soundsManager.stopSfx(SFX.BEGINNINGS);
+    soundsManager.stopSfx(SFX.ICE);
+    soundsManager.stopSfx(SFX.OPTIMISTIC);
+    soundsManager.stopSfx(SFX.DETERMINED);
+    soundsManager.stopSfx(SFX.BOSS);
+    soundsManager.stopSfx(SFX.WIN);
   }
 }
