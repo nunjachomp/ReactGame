@@ -7,23 +7,50 @@ const PlayerContext = createContext();
 
 const PlayerContextProvider = ({ children }) => {
     const [islogin , setlogin] =useState('')
-    const { user , getAccessTokenSilently,isAuthenticated } = useAuth0();
+    const { user , getAccessTokenSilently,isAuthenticated  ,logout} = useAuth0();
+    const [SessionID, setSessionID] =useState('')
 
     async function callProtectedAPI (){
       try{
         const token = await getAccessTokenSilently()
-        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/protectedAPI`,user)
-        console.log(response.data);
+        const headers = {
+          Authorization: `Bearer ${token}`, // Include the access token
+        };
+        
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/protectedAPI`, user, {withCredentials: true});
+        setSessionID(response.data)
+
       }
       catch(err){
         console.log(err);
       }
       
     }
+    const currentLevelId = localStorage.getItem('currentLevelId');
+    const storedTotalScore = parseInt(localStorage.getItem("totalScore"));
+
+    const userData = {
+      currentLevelId: currentLevelId,
+      totalScore: storedTotalScore
+    };
+
+    
+    const handleQuit = async () =>{
+      try{
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/protectedAPI/logout` ,{userData}, {withCredentials: true})
+        console.log(response.data)
+        logout({ logoutParams: { returnTo: window.location.origin } });
+      }
+       
+      catch(err){
+       console.log(err);
+      }
+      
+    }
 
 
   return (
-    <PlayerContext.Provider value={{callProtectedAPI,isAuthenticated}}>
+    <PlayerContext.Provider value={{callProtectedAPI,isAuthenticated,handleQuit}}>
       {children}
     </PlayerContext.Provider>
   );
