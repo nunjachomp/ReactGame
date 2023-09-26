@@ -95,7 +95,7 @@ export default function RenderLevel() {
             <LevelPlacementsLayer level={level} />
           </div>
           {level.isCompleted && (
-            <LevelCompleteMessage
+            <LevelCompleteMessage totalScore={totalScore}
               onLevelComplete={() => {
                 updateTotalScore(currentLevelScore);
               }}

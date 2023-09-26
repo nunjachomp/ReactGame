@@ -24,8 +24,6 @@ const Auth = () => {
     <>
     <div className="authMain">
       <li className="autBtn" onClick={loginWithPopup}>Sign In</li>
-      <li className="autBtn">New Game</li>
-      <li className="autBtn">Continue</li>
     </div>
      <div id="redRidingHood" className="skrollable running-girl" data-bottom-top="background-position-x[frames]:0px; right:-0%;" data-top-bottom="background-position-x[frames]:200px; right:0%;"></div>
 

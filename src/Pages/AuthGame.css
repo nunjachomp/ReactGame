@@ -40,7 +40,7 @@ body {background: #625749; position: relative;}
 
 body::-webkit-scrollbar {display: none;}
 
-.running-girl {
+/* .running-girl {
     top: 50%;
     float: left;
     background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/39373/game-girl-walking.png),
@@ -53,7 +53,7 @@ body::-webkit-scrollbar {display: none;}
     margin: -104px 0 0 -104px;
     width: 200px;
     height: 218px;
-}
+} */
 
 .background {
     position: fixed;
