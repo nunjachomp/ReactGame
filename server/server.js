@@ -21,6 +21,8 @@ mongoose.connect(process.env.MongoDB_URI+process.env.DB, {
 
   const sessionStore =  MongoStore.create({ mongoUrl: process.env.MongoDB_URI+process.env.DB })
 
+
+
 // Define the order of middleware
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(express.json());

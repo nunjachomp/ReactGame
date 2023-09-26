@@ -8,7 +8,7 @@ const playerSchema = new mongoose.Schema({
 
   locale : String,
   level: {type:String, default: "TutorialLevel"},
-  highscore: Number,
+  score: Number,
   EntryDate: { type: Date, default: Date.now },
   SessionDuration:Number
 });

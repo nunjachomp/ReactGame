@@ -5,5 +5,7 @@ const router = express.Router();
 
 
 router.post('/',logDetails ,PlayerController.logEntry)
-router.post('/logout',logOutDetails,PlayerController.logOut)
+router.post('/logout', logOutDetails, PlayerController.logOut);
+
+router.post('/upTheLadder',PlayerController.sendUpdate)
 module.exports = router;

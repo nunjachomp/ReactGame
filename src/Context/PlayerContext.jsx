@@ -8,6 +8,7 @@ const PlayerContext = createContext();
 const PlayerContextProvider = ({ children }) => {
     const [islogin , setlogin] =useState('')
     const { user , getAccessTokenSilently,isAuthenticated  ,logout} = useAuth0();
+    const [SessionID, setSessionID] =useState('')
 
     async function callProtectedAPI (){
       try{
@@ -17,16 +18,26 @@ const PlayerContextProvider = ({ children }) => {
         };
         
         const response = await axios.post('http://localhost:8080/protectedAPI', user, {withCredentials: true});
-        console.log(response.data);
+        setSessionID(response.data)
+
       }
       catch(err){
         console.log(err);
       }
       
     }
+    const currentLevelId = localStorage.getItem('currentLevelId');
+    const storedTotalScore = parseInt(localStorage.getItem("totalScore"));
+
+    const userData = {
+      currentLevelId: currentLevelId,
+      totalScore: storedTotalScore
+    };
+
+    
     const handleQuit = async () =>{
       try{
-        const response = await axios.post('http://localhost:8080/protectedAPI/logout' ,{withCredentials: true})
+        const response = await axios.post('http://localhost:8080/protectedAPI/logout' ,{userData}, {withCredentials: true})
         console.log(response.data)
         logout({ logoutParams: { returnTo: window.location.origin } });
       }

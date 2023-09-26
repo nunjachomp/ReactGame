@@ -7,8 +7,7 @@ class PlayerController{
 
     static logEntry  = async (req, res) => {
         try{
-        const sessionID = await PlayerModel.logPlayerModel(req.body)
-        res.send(sessionID)
+            res.send(req.sessionID)
         }catch(err){
             console.log(err.message);
         }
@@ -17,10 +16,14 @@ class PlayerController{
 
     static logOut = async (req,res) => {
         try{
+            await PlayerModel.logOutplayerModel(req.session.PlayerSession)
             res.send('successful logout')
             }catch(err){
                 console.log(err.message);
             }
+    }
+    static sendUpdate = async (req,res) => {
+        res.send("succefuly moved up")
     }
     
 }
