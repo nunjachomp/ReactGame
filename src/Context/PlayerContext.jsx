@@ -7,12 +7,16 @@ const PlayerContext = createContext();
 
 const PlayerContextProvider = ({ children }) => {
     const [islogin , setlogin] =useState('')
-    const { user , getAccessTokenSilently,isAuthenticated } = useAuth0();
+    const { user , getAccessTokenSilently,isAuthenticated  ,logout} = useAuth0();
 
     async function callProtectedAPI (){
       try{
         const token = await getAccessTokenSilently()
-        const response = await axios.post('http://localhost:8080/protectedAPI',user)
+        const headers = {
+          Authorization: `Bearer ${token}`, // Include the access token
+        };
+        
+        const response = await axios.post('http://localhost:8080/protectedAPI', user, {withCredentials: true});
         console.log(response.data);
       }
       catch(err){
@@ -20,10 +24,22 @@ const PlayerContextProvider = ({ children }) => {
       }
       
     }
+    const handleQuit = async () =>{
+      try{
+        const response = await axios.post('http://localhost:8080/protectedAPI/logout' ,{withCredentials: true})
+        console.log(response.data)
+        logout({ logoutParams: { returnTo: window.location.origin } });
+      }
+       
+      catch(err){
+       console.log(err);
+      }
+      
+    }
 
 
   return (
-    <PlayerContext.Provider value={{callProtectedAPI,isAuthenticated}}>
+    <PlayerContext.Provider value={{callProtectedAPI,isAuthenticated,handleQuit}}>
       {children}
     </PlayerContext.Provider>
   );

@@ -1,9 +1,5 @@
 const Player = require('../Schemas/PlayerSchema')
-require('dotenv').config();
-const mongoose = require("mongoose")
 
-
-mongoose.connect(process.env.MongoDB_URI+process.env.DB)
 
 
 
@@ -17,7 +13,7 @@ class PlayerModel{
             Picture:playerEntry.picture,
             locale:playerEntry.locale
          })
-         console.log(' model ', playerLoggin);
+      
          return playerLoggin._id;
         }catch (err){
             console.log(err);

@@ -5,11 +5,12 @@ const playerSchema = new mongoose.Schema({
   username: { type: String, required: true },
   fullName: { type: String, required: true },
   Picture : { type: String, required: true } ,
+
   locale : String,
-  level: Number,
+  level: {type:String, default: "TutorialLevel"},
   highscore: Number,
   EntryDate: { type: Date, default: Date.now },
-  CreatedAt: {type: Date, immutable:true , default:Date.now }
+  SessionDuration:Number
 });
 
 

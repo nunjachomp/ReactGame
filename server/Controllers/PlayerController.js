@@ -14,6 +14,14 @@ class PlayerController{
         }
         
     };
+
+    static logOut = async (req,res) => {
+        try{
+            res.send('successful logout')
+            }catch(err){
+                console.log(err.message);
+            }
+    }
     
 }
 
