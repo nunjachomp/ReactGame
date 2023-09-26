@@ -10,7 +10,7 @@ const { auth } = require('express-oauth2-jwt-bearer');
 
 
 // Define the order of middleware
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: `${process.env.REACT_APP_CLIENT_URL}`, credentials: true }));
 app.use(express.json());
 
 
