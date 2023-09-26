@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import styles from "./RenderLevel.module.css";
 import { THEME_BACKGROUNDS } from "../../helpers/consts";
 import LevelBackgroundTilesLayer from "./LevelBackgroundTilesLayer";
@@ -11,6 +11,7 @@ import { currentLevelIdAtom } from "../../atoms/currentLevelIdAtom";
 import TopHud from "../hud/TopHud";
 import { useTotalScore } from "../../Context/TotalScoreContext";
 import PauseMenu from "../PauseMenu/PauseMenu";
+import PlayerContext from "../../Context/PlayerContext";
 
 export default function RenderLevel() {
   const currentLevelId = useRecoilValue(currentLevelIdAtom);
@@ -19,6 +20,7 @@ export default function RenderLevel() {
   const [isTotalScoreUpdated, setIsTotalScoreUpdated] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const levelState = useRef(null);
+  const {handleQuit} = useContext(PlayerContext)
 
   const { totalScore, updateTotalScore } = useTotalScore();
 
@@ -64,9 +66,7 @@ export default function RenderLevel() {
     }
   }, [level, currentLevelScore, isTotalScoreUpdated]);
   
-  const handleQuit = () => {
-    // Maybe handle sign out here?
-  };
+
 
   if (!level) {
     return null;
@@ -95,7 +95,7 @@ export default function RenderLevel() {
             <LevelPlacementsLayer level={level} />
           </div>
           {level.isCompleted && (
-            <LevelCompleteMessage
+            <LevelCompleteMessage totalScore={totalScore}
               onLevelComplete={() => {
                 updateTotalScore(currentLevelScore);
               }}

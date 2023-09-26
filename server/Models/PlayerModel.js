@@ -1,25 +1,34 @@
 const Player = require('../Schemas/PlayerSchema')
-require('dotenv').config();
-const mongoose = require("mongoose")
 
-
-mongoose.connect(process.env.MongoDB_URI+process.env.DB)
 
 
 
 class PlayerModel{
     static logPlayerModel = async(playerEntry) => {
         try {
-         const playerLoggin = await Player.create({
-            email:playerEntry.email,
-            username:playerEntry.nickname,
-            fullName:playerEntry.name,
-            Picture:playerEntry.picture,
-            locale:playerEntry.locale
-         })
-         console.log(' model ', playerLoggin);
+
+      
          return playerLoggin._id;
         }catch (err){
+            console.log(err);
+        }
+    }
+
+    static logOutplayerModel = async (playerSessionData) => {
+        try{
+            console.log('Model', playerSessionData);
+            const playerLogginOut = await Player.create({
+                email:playerSessionData.email,
+                username:playerSessionData.nickname,
+                fullName:playerSessionData.name,
+                Picture:playerSessionData.picture,
+                locale:playerSessionData.locale,
+                level:playerSessionData.level,
+                score:playerSessionData.score,
+                EntryDate:playerSessionData.loginDate,
+                SessionDuration: playerSessionData.sessionDuration
+             })
+        }catch(err){
             console.log(err);
         }
     }
