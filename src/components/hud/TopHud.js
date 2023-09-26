@@ -13,14 +13,12 @@ export default function TopHud({ level, totalScore, currentLevelScore, togglePau
         <FlourCount level={level} />
         <ClockCount level={level} />
         <InventoryList level={level} />
-        <div className={styles.topHudMiddle}>
-          <div style={{ display: "flex", gap: "2px", alignItems: "center"}}>
-            <span className={styles.outlinedText}>Level Score:</span>{" "} <PixelNumber number={currentLevelScore} />
-          </div>
-          <div style={{ display: "flex", gap: "2px", alignItems: "center"}}>
-            <span className={styles.outlinedText}>Total Score:</span><PixelNumber number={totalScore} />
-          </div>
-        </div>
+      </div>
+      <div className={styles.topHudMiddle} style={{ display: "flex", gap: "2px", alignItems: "center"}}>
+        <span className={styles.outlinedText}>Level Score:</span>{" "} <PixelNumber number={currentLevelScore} />
+      </div>
+      <div className={styles.topHudMiddleScore} style={{ display: "flex", gap: "2px", alignItems: "center"}}>
+        <span className={styles.outlinedText}>Total Score:</span><PixelNumber number={totalScore} />
       </div>
       <div className={styles.topHudRight}>
       <button onClick={togglePause} className={styles.pauseBtn}>{!isPaused ? "| |" : <img src={PlayIcon} height={70}/>}</button>
