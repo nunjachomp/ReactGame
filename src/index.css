@@ -34,30 +34,30 @@ canvas {
 /* 3x */
 @media(min-width: 540px) {
   :root {
-      --pixel-size: 3;
+      --pixel-size: 2;
   }
 }
 /* 4x */
 @media(min-width: 720px) {
   :root {
-      --pixel-size: 4;
+      --pixel-size: 3;
   }
 }
 /* 5x */
 @media(min-width: 900px) {
   :root {
-      --pixel-size: 5;
+      --pixel-size: 3;
   }
 }
 /* 6x */
 @media(min-width: 1080px) {
   :root {
-      --pixel-size: 6;
+      --pixel-size: 4;
   }
 }
 /* 7x */
 @media(min-width: 1260px) {
   :root {
-      --pixel-size: 7;
+      --pixel-size: 4;
   }
 }
