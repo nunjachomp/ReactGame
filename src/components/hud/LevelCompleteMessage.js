@@ -20,7 +20,7 @@ export default function LevelCompleteMessage({totalScore}) {
       totalScore: totalScore,
     };
     try {
-      const response = await axios.post("http://localhost:8080/protectedAPI/upTheLadder", levelData, {withCredentials:true});
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/protectedAPI/upTheLadder`, levelData, {withCredentials:true});
       console.log('Data sent successfully:', response.data);
     } catch (error) {
       console.error('Error sending data:', error);
