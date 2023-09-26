@@ -20,7 +20,6 @@ export default function RenderLevel() {
   const [isPaused, setIsPaused] = useState(false);
   const levelState = useRef(null);
 
-  // Get the totalScore and updateTotalScore from the context
   const { totalScore, updateTotalScore } = useTotalScore();
 
   const togglePause = () => {
@@ -31,10 +30,9 @@ export default function RenderLevel() {
   };
 
   useEffect(() => {
-    // Create the levelState instance when the component mounts
     levelState.current = new LevelState(currentLevelId, (newState) => {
       setLevel(newState);
-      setCurrentLevelScore(newState.levelScore);
+      setCurrentLevelScore(newState.levelScore);  
     });
 
     const handleKeyPress = (event) => {
@@ -46,7 +44,6 @@ export default function RenderLevel() {
     document.addEventListener("keydown", handleKeyPress);
 
     return () => {
-      // Destroy the levelState instance when the component unmounts
       if (levelState.current) {
         levelState.current.destroy();
       }
@@ -55,16 +52,18 @@ export default function RenderLevel() {
   }, [currentLevelId]);
 
   useEffect(() => {
-    if (level) {
-
-      if (level.isCompleted && !isTotalScoreUpdated) {
-        console.log("Level completed. Updating total score with:", currentLevelScore);
-        updateTotalScore(currentLevelScore);
-        setIsTotalScoreUpdated(true);
-      }
+    if (level && level.isCompleted && !isTotalScoreUpdated) {
+      console.log("Level completed. Updating total score with:", currentLevelScore);
+      const updatedTotalScore = totalScore + currentLevelScore;
+      console.log("Old Total Score:", totalScore);
+      console.log("New Total Score:", updatedTotalScore);
+      updateTotalScore(currentLevelScore);
+      setIsTotalScoreUpdated(true); 
+  
+      setIsTotalScoreUpdated(false);
     }
-  }, [level, currentLevelScore, isTotalScoreUpdated, updateTotalScore]);
-
+  }, [level, currentLevelScore, isTotalScoreUpdated]);
+  
   const handleQuit = () => {
     // Maybe handle sign out here?
   };

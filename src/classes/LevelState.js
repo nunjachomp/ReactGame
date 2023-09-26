@@ -117,7 +117,7 @@ export class LevelState {
     if (this.isCompleted) {
       // Add the current level's score to the global total score
       this.totalScore += this.levelScore;
-      console.log("Total Score:", this.totalScore); // Use this.totalScore
+      console.log("Total Score:", this.totalScore);
     }
   
     console.log("Remaining Time:", remainingTime);

@@ -15,6 +15,7 @@ export default function LevelCompleteMessage() {
     });
     const nextLevelId = levelsArray[currentIndex + 1] ?? levelsArray[0];
     setCurrentId(nextLevelId);
+    localStorage.setItem("currentLevelId", nextLevelId);
   };
 
   useKeyPress("Enter", () => {
