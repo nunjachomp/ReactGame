@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
 const storedLevelId = localStorage.getItem("currentLevelId");
-const defaultLevelId = storedLevelId || "TutorialLevel";
+const defaultLevelId = "TutorialLevel";
 
 export const currentLevelIdAtom = atom({
   key: "currentLevelIdAtom",

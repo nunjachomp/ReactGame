@@ -16,6 +16,9 @@
 }
 
 .topHudMiddle {
+  position: absolute;
+  transform: translateY(120%);
+  margin-left: 0.25rem;
   display: flex;
   gap: 5px;
 }
