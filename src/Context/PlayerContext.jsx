@@ -17,7 +17,7 @@ const PlayerContextProvider = ({ children }) => {
           Authorization: `Bearer ${token}`, // Include the access token
         };
         
-        const response = await axios.post('http://localhost:8080/protectedAPI', user, {withCredentials: true});
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/protectedAPI`, user, {withCredentials: true});
         setSessionID(response.data)
 
       }
@@ -37,7 +37,7 @@ const PlayerContextProvider = ({ children }) => {
     
     const handleQuit = async () =>{
       try{
-        const response = await axios.post('http://localhost:8080/protectedAPI/logout' ,{userData}, {withCredentials: true})
+        const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/protectedAPI/logout` ,{userData}, {withCredentials: true})
         console.log(response.data)
         logout({ logoutParams: { returnTo: window.location.origin } });
       }
