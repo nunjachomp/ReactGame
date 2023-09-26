@@ -17,20 +17,22 @@
 
 .topHudMiddle {
   transform: scale(var(--pixel-size));
+  transform-origin: top left;
   display: flex;
   gap: 5px;
   position: absolute;
   top: 176%;
-  left: 5%;
+  left: 1%;
 }
 
 .topHudMiddleScore {
   transform: scale(var(--pixel-size));
+  transform-origin: top left;
   display: flex;
   gap: 5px;
   position: absolute;
   top: 237%;
-  left: 5.5%;
+  left: 1%;
 }
 
 .outlinedText {
